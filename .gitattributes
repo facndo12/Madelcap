@@ -1,0 +1,13 @@
+# Los scripts se ejecutan en el VPS (Linux). Con finales CRLF fallan con
+# "bad interpreter: /usr/bin/env bash^M", asi que se fuerza LF sin importar
+# la configuracion de autocrlf de cada maquina.
+*.sh text eol=lf
+*.mjs text eol=lf
+*.yml text eol=lf
+*.conf text eol=lf
+
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.woff2 binary
