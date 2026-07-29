@@ -108,6 +108,81 @@ sudo systemctl reload nginx
 `nginx -t` tiene que pasar antes de recargar. Si falla, el `reload` no aplica
 nada y los sitios existentes siguen andando.
 
+## 4-bis. Publicar detras de Traefik (VPS con otros sitios)
+
+Este es el camino usado en el VPS `srv1224751`, donde el puerto 80 lo ocupa el
+nginx del host con varios sitios y el 443 lo ocupa el Traefik del stack de n8n.
+La landing corre en su propio contenedor, sin publicar puertos, y Traefik la
+alcanza por la red interna. No se toca ni nginx ni n8n.
+
+Funciona porque ese Traefik emite certificados con `tlschallenge`, o sea
+TLS-ALPN-01, que valida por el 443 y no necesita el puerto 80.
+
+1. Apuntar un registro `A` de `madelcap.consultoriadigital.io` a la IP del VPS
+   y esperar a que resuelva:
+
+```bash
+dig +short madelcap.consultoriadigital.io @1.1.1.1
+```
+
+2. Clonar, configurar y construir:
+
+```bash
+sudo mkdir -p /var/www/madelcap
+sudo chown -R "$USER":"$USER" /var/www/madelcap
+git clone https://github.com/facndo12/Madelcap.git /var/www/madelcap/current
+cd /var/www/madelcap/current
+cp .env.example .env
+# SITE_URL=https://madelcap.consultoriadigital.io
+nano .env
+npm run build
+```
+
+3. Levantar el contenedor:
+
+```bash
+docker compose -f deploy/docker-compose.yml up -d
+docker logs -f madelcap-web
+```
+
+4. Redirigir http a https desde el nginx del host:
+
+```bash
+sudo cp deploy/nginx-host-redirect.conf /etc/nginx/sites-available/madelcap
+sudo ln -s /etc/nginx/sites-available/madelcap /etc/nginx/sites-enabled/madelcap
+sudo nginx -t && sudo systemctl reload nginx
+```
+
+5. Verificar el certificado:
+
+```bash
+curl -sI https://madelcap.consultoriadigital.io | head -3
+```
+
+Si da error de TLS, mirar `docker logs n8n-traefik-1 | grep -i acme`. La causa
+mas comun es que el DNS todavia no propago cuando Traefik pidio el
+certificado; reintenta solo.
+
+### Mientras sea un preview
+
+`deploy/nginx-container.conf` manda `X-Robots-Tag: noindex, nofollow`. Es a
+proposito: un preview en un subdominio de consultoriadigital.io no puede
+indexarse, porque competiria con el sitio real de la clinica y dejaria
+contenido duplicado en el dominio equivocado. **Quitar esa cabecera recien
+cuando el sitio pase a su dominio definitivo.**
+
+### Actualizar esta variante
+
+```bash
+cd /var/www/madelcap/current
+git pull --ff-only
+npm run build
+docker restart madelcap-web
+```
+
+El contenedor monta `dist` como volumen, asi que alcanza con reconstruir y
+reiniciar; no hay que rehacer la imagen.
+
 ## 5. Actualizar el sitio despues de cambios
 
 ```bash
