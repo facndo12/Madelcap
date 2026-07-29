@@ -16,19 +16,19 @@ colors:
   whatsapp-green: "#1fa855"
 typography:
   display:
-    fontFamily: "Fraunces, Georgia, Times New Roman, serif"
+    fontFamily: "Montserrat, Segoe UI, Arial, sans-serif"
     fontSize: "clamp(4.1rem, 11vw, 8.8rem)"
     fontWeight: 800
     lineHeight: 0.88
     letterSpacing: "-0.01em"
   headline:
-    fontFamily: "Fraunces, Georgia, Times New Roman, serif"
+    fontFamily: "Montserrat, Segoe UI, Arial, sans-serif"
     fontSize: "clamp(2.2rem, 4.4vw, 4rem)"
     fontWeight: 800
     lineHeight: 1.02
     letterSpacing: "-0.01em"
   body:
-    fontFamily: "Aptos, Segoe UI, Arial, sans-serif"
+    fontFamily: "Montserrat, Segoe UI, Arial, sans-serif"
     fontSize: "1rem"
     lineHeight: 1.55
 rounded:
@@ -113,15 +113,14 @@ The palette is orange plus a neutral ramp. Both come from the isotipo: the pulse
 
 ## Typography
 
-**Display Font:** Fraunces (OFL, self-hosted, variable 600-900, latin subset) with Georgia and Times New Roman fallbacks.
-**Body Font:** Aptos with Segoe UI and Arial fallbacks.
+**Display and Body Font:** Montserrat (OFL, self-hosted, variable 400-900, latin subset) with Segoe UI and Arial fallbacks.
 
-**Character:** The wordmark is a classical serif. Headlines pick that up so the page and the mark read as one brand, while body copy stays in a familiar sans for patients reading on mobile. Only the display face is self-hosted — the identity signal lives in the headings, and body text in a system sans costs nothing and never flashes.
+**Character:** Montserrat is the face the clinic already uses across its Instagram pieces, so the site and the feed read as one brand. That is a stronger anchor than the logo alone: the wordmark is a static asset, while the social posts are the brand expression patients actually see every week. One family covers display and body, differentiated by weight rather than by contrast of family.
 
 ### Hierarchy
 
-- **Display** (Fraunces 800, clamp(4.1rem, 11vw, 8.8rem), 0.88): The first viewport product name only.
-- **Headline** (Fraunces 800, clamp(2.2rem, 4.4vw, 4rem), 1.02): Section leads and conversion blocks.
+- **Display** (Montserrat 800, clamp(4.1rem, 11vw, 8.8rem), 0.88): The first viewport product name only.
+- **Headline** (Montserrat 800, clamp(2.2rem, 4.4vw, 4rem), 1.02): Section leads and conversion blocks.
 - **Title** (sans 800, 1.08rem-1.6rem): Service, doctor, panel, and diagnostic names.
 - **Body** (400-650, 1rem, 1.55): Descriptions, practical notes, and supporting context.
 - **Label** (800-900, 0.82rem-0.93rem): Navigation, panel labels, and compact action text.
