@@ -64,12 +64,13 @@ Contenido fuente disponible:
 
 - `madelcap.md`: datos generales, contacto, historia, diferenciales, profesionales destacados, especialidades, preguntas frecuentes, lineamientos web y SEO.
 - `public/images/madelcapLogo.png`: logo disponible.
-- `public/images/madelcapFachada.jpg`: foto de fachada disponible.
-- `public/images/DrFerreira.jpg`: foto profesional.
-- `public/images/DrBurgos.jpg`: foto profesional.
-- `public/images/DrMachuca.jpg`: foto profesional.
-- `public/images/Aguilar.jpg`: foto profesional.
-- `public/images/licSpital.jpg`: foto profesional.
+- `public/images/madelcapFachada.webp`: foto de fachada usada en la pagina.
+- `public/images/madelcapFachada.jpg`: misma fachada en JPEG, solo para `og:image`.
+- `public/images/DrFerreira.webp`: foto profesional.
+- `public/images/DrBurgos.webp`: foto profesional.
+- `public/images/DrMachuca.webp`: foto profesional.
+- `public/images/Aguilar.webp`: foto profesional.
+- `public/images/licSpital.webp`: foto profesional.
 
 No hay testimonios, casos de exito, metricas clinicas, certificaciones, convenios, precios, seguros aceptados ni claims medicos adicionales confirmados en el repo. El trabajo futuro no debe fabricarlos.
 
