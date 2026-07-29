@@ -260,15 +260,21 @@ button:focus-visible {
   padding-inline: max(22px, calc((100vw - 1120px) / 2));
 }
 
+/* Hero y franja de servicios ocupan juntos el primer viewport. El hero
+   cede el alto que la franja necesite, asi la franja entra siempre
+   completa: nadie tiene que saber cuanto mide, y si a cierto ancho el
+   texto de las pastillas envuelve y crece, el reparto se reacomoda solo.
+   El hero nunca se encoge por debajo de su contenido; en pantallas bajas
+   el bloque simplemente pasa de 100vh. */
+.first-view {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
 .hero {
   position: relative;
-  /* El pliegue tiene que caer dentro del padding superior de la franja
-     de servicios (20px), no sobre las pastillas. Con 94vh la franja
-     asomaba cortada por la mitad y leia como pagina rota. Restar el
-     padding es robusto: si a cierto ancho el texto de las pastillas
-     envuelve y la franja crece, el corte sigue cayendo en naranja
-     solido. */
-  min-height: calc(100vh - 20px);
+  flex: 1;
   display: flex;
   align-items: stretch;
   isolation: isolate;
@@ -1099,6 +1105,12 @@ h1 {
   .intro-grid .clarity-card a {
     justify-self: start;
     white-space: normal;
+  }
+
+  /* En mobile el contenido del hero ya pasa el alto de pantalla y la
+     franja cae en una o dos columnas: forzar 100vh solo agregaria hueco. */
+  .first-view {
+    min-height: 0;
   }
 
   .hero {
