@@ -9,9 +9,13 @@
       content="Clínica Madelcap en Ñemby. Agendá por WhatsApp consultas médicas, laboratorio, ecografías, radiografías y más de 15 especialidades en un solo lugar."
     />
     <meta name="robots" content="index, follow" />
-    <meta name="theme-color" content="#f26a21" />
+    <meta name="theme-color" content="#fe5800" />
     <link rel="canonical" href="%SITE_URL%/" />
-    <link rel="icon" href="/images/madelcapLogo.png" />
+    <!-- El favicon es el isotipo recortado del logo. El logo completo es
+         apaisado y en una pestaña se veia aplastado. -->
+    <link rel="icon" href="/images/favicon.png" sizes="128x128" />
+    <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/fraunces-latin.woff2" crossorigin />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="es_PY" />
     <meta property="og:title" content="Clínica Madelcap en Ñemby" />
@@ -91,7 +95,7 @@
     -->
     <header class="site-header" data-nav>
       <a class="brand" href="#inicio" aria-label="Clínica Madelcap inicio">
-        <img src="/images/madelcapLogo.png" alt="Clínica Madelcap" width="750" height="500" />
+        <img src="/images/madelcapLogo.png" alt="Clínica Madelcap" width="582" height="313" />
       </a>
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
         <span></span>
@@ -177,73 +181,73 @@
           <p>Consultá disponibilidad por WhatsApp antes de acercarte; algunas atenciones son por turno y otras por orden de llegada.</p>
         </div>
         <div class="specialty-grid">
-          <a class="service-card glass-card" href="https://wa.me/595971754545?text=Hola%20Cl%C3%ADnica%20Madelcap%2C%20quiero%20agendar%20un%20turno%20de%20Cardiolog%C3%ADa%20adulto." target="_blank" rel="noopener">
+          <a class="service-card" href="https://wa.me/595971754545?text=Hola%20Cl%C3%ADnica%20Madelcap%2C%20quiero%20agendar%20un%20turno%20de%20Cardiolog%C3%ADa%20adulto." target="_blank" rel="noopener">
             <img src="/images/cardiologiaAdulto.webp" alt="Cardiología adulto" width="800" height="534" loading="lazy" decoding="async" />
             <h3>Cardiología adulto</h3>
             <p>Consultas, electrocardiogramas, ecocardiogramas y ergometrías.</p>
             <span class="card-action">Agendar por WhatsApp</span>
           </a>
-          <a class="service-card glass-card" href="https://wa.me/595971754545?text=Hola%20Cl%C3%ADnica%20Madelcap%2C%20quiero%20agendar%20un%20turno%20de%20Cardiolog%C3%ADa%20pedi%C3%A1trica." target="_blank" rel="noopener">
+          <a class="service-card" href="https://wa.me/595971754545?text=Hola%20Cl%C3%ADnica%20Madelcap%2C%20quiero%20agendar%20un%20turno%20de%20Cardiolog%C3%ADa%20pedi%C3%A1trica." target="_blank" rel="noopener">
             <img src="/images/cardiologiaPediatrica.webp" alt="Cardiología pediátrica" width="800" height="534" loading="lazy" decoding="async" />
             <h3>Cardiología pediátrica</h3>
             <p>Evaluación y seguimiento cardiológico para niños y adolescentes.</p>
             <span class="card-action">Agendar por WhatsApp</span>
           </a>
-          <a class="service-card glass-card" href="https://wa.me/595971754545?text=Hola%20Cl%C3%ADnica%20Madelcap%2C%20quiero%20agendar%20un%20turno%20de%20Diabetolog%C3%ADa." target="_blank" rel="noopener">
+          <a class="service-card" href="https://wa.me/595971754545?text=Hola%20Cl%C3%ADnica%20Madelcap%2C%20quiero%20agendar%20un%20turno%20de%20Diabetolog%C3%ADa." target="_blank" rel="noopener">
             <img src="/images/diabetologia.webp" alt="Diabetología" width="800" height="800" loading="lazy" decoding="async" />
             <h3>Diabetología</h3>
             <p>Control, educación y seguimiento para diabetes y prediabetes.</p>
             <span class="card-action">Agendar por WhatsApp</span>
           </a>
-          <a class="service-card glass-card" href="https://wa.me/595971754545?text=Hola%20Cl%C3%ADnica%20Madelcap%2C%20quiero%20agendar%20un%20turno%20de%20Cl%C3%ADnica%20m%C3%A9dica." target="_blank" rel="noopener">
+          <a class="service-card" href="https://wa.me/595971754545?text=Hola%20Cl%C3%ADnica%20Madelcap%2C%20quiero%20agendar%20un%20turno%20de%20Cl%C3%ADnica%20m%C3%A9dica." target="_blank" rel="noopener">
             <img src="/images/clinicaMedica.webp" alt="Clínica médica" width="800" height="534" loading="lazy" decoding="async" />
             <h3>Clínica médica</h3>
             <p>Chequeos, controles de salud y atención de enfermedades frecuentes.</p>
             <span class="card-action">Agendar por WhatsApp</span>
           </a>
-          <a class="service-card glass-card" href="https://wa.me/595971754545?text=Hola%20Cl%C3%ADnica%20Madelcap%2C%20quiero%20agendar%20un%20turno%20de%20Ginecolog%C3%ADa." target="_blank" rel="noopener">
+          <a class="service-card" href="https://wa.me/595971754545?text=Hola%20Cl%C3%ADnica%20Madelcap%2C%20quiero%20agendar%20un%20turno%20de%20Ginecolog%C3%ADa." target="_blank" rel="noopener">
             <img src="/images/ginecologia.webp" alt="Ginecología" width="800" height="534" loading="lazy" decoding="async" />
             <h3>Ginecología</h3>
             <p>Controles ginecológicos, PAP, colposcopía y salud de la mujer.</p>
             <span class="card-action">Agendar por WhatsApp</span>
           </a>
-          <a class="service-card glass-card" href="https://wa.me/595971754545?text=Hola%20Cl%C3%ADnica%20Madelcap%2C%20quiero%20agendar%20un%20turno%20de%20Traumatolog%C3%ADa." target="_blank" rel="noopener">
+          <a class="service-card" href="https://wa.me/595971754545?text=Hola%20Cl%C3%ADnica%20Madelcap%2C%20quiero%20agendar%20un%20turno%20de%20Traumatolog%C3%ADa." target="_blank" rel="noopener">
             <img src="/images/traumatologia.webp" alt="Traumatología" width="800" height="450" loading="lazy" decoding="async" />
             <h3>Traumatología</h3>
             <p>Lesiones, fracturas, dolores articulares y patologías de columna.</p>
             <span class="card-action">Agendar por WhatsApp</span>
           </a>
-          <a class="service-card glass-card" href="https://wa.me/595971754545?text=Hola%20Cl%C3%ADnica%20Madelcap%2C%20quiero%20agendar%20un%20turno%20de%20Urolog%C3%ADa." target="_blank" rel="noopener">
+          <a class="service-card" href="https://wa.me/595971754545?text=Hola%20Cl%C3%ADnica%20Madelcap%2C%20quiero%20agendar%20un%20turno%20de%20Urolog%C3%ADa." target="_blank" rel="noopener">
             <img src="/images/urologia.webp" alt="Urología" width="800" height="534" loading="lazy" decoding="async" />
             <h3>Urología</h3>
             <p>Cálculos, próstata, infecciones urinarias e incontinencia.</p>
             <span class="card-action">Agendar por WhatsApp</span>
           </a>
-          <a class="service-card glass-card" href="https://wa.me/595971754545?text=Hola%20Cl%C3%ADnica%20Madelcap%2C%20quiero%20agendar%20un%20turno%20de%20Psicolog%C3%ADa." target="_blank" rel="noopener">
+          <a class="service-card" href="https://wa.me/595971754545?text=Hola%20Cl%C3%ADnica%20Madelcap%2C%20quiero%20agendar%20un%20turno%20de%20Psicolog%C3%ADa." target="_blank" rel="noopener">
             <img src="/images/psicologia.webp" alt="Psicología" width="800" height="534" loading="lazy" decoding="async" />
             <h3>Psicología</h3>
             <p>Acompañamiento para ansiedad, estrés, depresión y desarrollo personal.</p>
             <span class="card-action">Agendar por WhatsApp</span>
           </a>
-          <a class="service-card glass-card" href="https://wa.me/595971754545?text=Hola%20Cl%C3%ADnica%20Madelcap%2C%20quiero%20agendar%20un%20turno%20de%20Nutrici%C3%B3n." target="_blank" rel="noopener">
+          <a class="service-card" href="https://wa.me/595971754545?text=Hola%20Cl%C3%ADnica%20Madelcap%2C%20quiero%20agendar%20un%20turno%20de%20Nutrici%C3%B3n." target="_blank" rel="noopener">
             <img src="/images/nutricion.webp" alt="Nutrición" width="800" height="534" loading="lazy" decoding="async" />
             <h3>Nutrición</h3>
             <p>Planes personalizados para obesidad, diabetes y salud metabólica.</p>
             <span class="card-action">Agendar por WhatsApp</span>
           </a>
-          <a class="service-card glass-card" href="https://wa.me/595971754545?text=Hola%20Cl%C3%ADnica%20Madelcap%2C%20quiero%20agendar%20un%20turno%20de%20Neurolog%C3%ADa." target="_blank" rel="noopener">
+          <a class="service-card" href="https://wa.me/595971754545?text=Hola%20Cl%C3%ADnica%20Madelcap%2C%20quiero%20agendar%20un%20turno%20de%20Neurolog%C3%ADa." target="_blank" rel="noopener">
             <img src="/images/neurologia.webp" alt="Neurología" width="800" height="534" loading="lazy" decoding="async" />
             <h3>Neurología</h3>
             <p>Cefaleas, migrañas, epilepsia, ACV, Parkinson y otros trastornos.</p>
             <span class="card-action">Agendar por WhatsApp</span>
           </a>
-          <a class="service-card glass-card" href="https://wa.me/595971754545?text=Hola%20Cl%C3%ADnica%20Madelcap%2C%20quiero%20agendar%20un%20turno%20de%20Dermatolog%C3%ADa." target="_blank" rel="noopener">
+          <a class="service-card" href="https://wa.me/595971754545?text=Hola%20Cl%C3%ADnica%20Madelcap%2C%20quiero%20agendar%20un%20turno%20de%20Dermatolog%C3%ADa." target="_blank" rel="noopener">
             <img src="/images/dermatologia.webp" alt="Dermatología" width="800" height="534" loading="lazy" decoding="async" />
             <h3>Dermatología</h3>
             <p>Acné, manchas, alergias, infecciones y lesiones cutáneas.</p>
             <span class="card-action">Agendar por WhatsApp</span>
           </a>
-          <a class="service-card glass-card" href="https://wa.me/595971754545?text=Hola%20Cl%C3%ADnica%20Madelcap%2C%20quiero%20agendar%20un%20turno%20de%20Otorrinolaringolog%C3%ADa." target="_blank" rel="noopener">
+          <a class="service-card" href="https://wa.me/595971754545?text=Hola%20Cl%C3%ADnica%20Madelcap%2C%20quiero%20agendar%20un%20turno%20de%20Otorrinolaringolog%C3%ADa." target="_blank" rel="noopener">
             <img src="/images/otorrinolaringologia.webp" alt="Otorrinolaringología" width="800" height="454" loading="lazy" decoding="async" />
             <h3>Otorrinolaringología</h3>
             <p>Oído, nariz, garganta, alergias, vértigo y audición.</p>
@@ -325,7 +329,7 @@
 
     <footer class="site-footer">
       <div class="footer-brand">
-        <img src="/images/madelcapLogo.png" alt="Clínica Madelcap" width="750" height="500" loading="lazy" />
+        <img src="/images/madelcapLogo.png" alt="Clínica Madelcap" width="582" height="313" loading="lazy" />
         <p>Tu salud, nuestra prioridad.</p>
       </div>
       <div class="footer-links">

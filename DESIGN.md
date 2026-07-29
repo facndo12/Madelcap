@@ -1,32 +1,32 @@
 ---
 name: Clinica Madelcap
-description: Landing medica local con recepcion luminosa, glassmorphism funcional y accion directa por WhatsApp.
+description: Landing medica local con recepcion luminosa, identidad anclada en el isotipo y accion directa por WhatsApp.
 colors:
-  brand-orange: "#f26a21"
-  brand-orange-deep: "#c94c13"
-  brand-orange-dark: "#8f310d"
-  brand-orange-burnt: "#9b390f"
-  brand-orange-soft: "#fff0e8"
-  clinical-teal: "#0b7b83"
-  whatsapp-green: "#1fa855"
-  whatsapp-green-deep: "#178a47"
-  ink: "#17252a"
-  muted-text: "#58676d"
+  brand-orange: "#fe5800"
+  orange-action: "#d24200"
+  orange-deep: "#b03700"
+  orange-dark: "#8f2e00"
+  orange-burnt: "#a83505"
+  orange-soft: "#fff1e9"
+  brand-grey: "#58595b"
+  ink: "#2c2d30"
+  muted-text: "#6e6f74"
   paper: "#fffaf6"
   clinic-white: "#ffffff"
+  whatsapp-green: "#1fa855"
 typography:
   display:
-    fontFamily: "Aptos, Segoe UI, Arial, sans-serif"
+    fontFamily: "Fraunces, Georgia, Times New Roman, serif"
     fontSize: "clamp(4.1rem, 11vw, 8.8rem)"
     fontWeight: 800
     lineHeight: 0.88
-    letterSpacing: "0"
+    letterSpacing: "-0.01em"
   headline:
-    fontFamily: "Aptos, Segoe UI, Arial, sans-serif"
-    fontSize: "clamp(2.35rem, 5vw, 4.8rem)"
+    fontFamily: "Fraunces, Georgia, Times New Roman, serif"
+    fontSize: "clamp(2.2rem, 4.4vw, 4rem)"
     fontWeight: 800
-    lineHeight: 0.98
-    letterSpacing: "0"
+    lineHeight: 1.02
+    letterSpacing: "-0.01em"
   body:
     fontFamily: "Aptos, Segoe UI, Arial, sans-serif"
     fontSize: "1rem"
@@ -43,7 +43,7 @@ spacing:
   section: "96px"
 components:
   button-primary:
-    backgroundColor: "{colors.brand-orange}"
+    backgroundColor: "{colors.orange-action}"
     textColor: "{colors.clinic-white}"
     rounded: "{rounded.pill}"
     padding: "0 20px"
@@ -54,7 +54,12 @@ components:
     rounded: "{rounded.pill}"
     padding: "0 20px"
     height: "44px"
-  glass-card:
+  service-card:
+    backgroundColor: "{colors.clinic-white}"
+    textColor: "{colors.ink}"
+    rounded: "{rounded.card}"
+    padding: "18px"
+  glass-panel:
     backgroundColor: "rgba(255, 255, 255, 0.68)"
     textColor: "{colors.ink}"
     rounded: "{rounded.card}"
@@ -67,63 +72,75 @@ components:
 
 **Creative North Star: "Recepcion luminosa de barrio"**
 
-The system turns the first website touchpoint into the feeling of arriving at a clean, bright clinic reception in Nemby. Real facade and professional photography carry trust; translucent surfaces carry orientation, appointment cues, service summaries, and next actions.
+The system turns the first website touchpoint into the feeling of arriving at a clean, bright clinic reception in Nemby. Real facade and professional photography carry trust; translucent surfaces carry orientation, appointment cues, and next actions.
 
-The visual language is warm and clinical rather than sterile. Orange is the brand signal and primary action color, white is the main material, teal gives healthcare contrast, and ink keeps serious information readable. Glassmorphism is reserved for navigation, action panels, and service cards where layered context helps the patient stay oriented.
+The palette, the display type, and the page motif are all derived from the existing isotipo rather than invented alongside it. The mark supplies two colors and one graphic device, and the system does not add a third hue.
 
 **Key Characteristics:**
 
+- Every brand value in this system is sampled from the logo file, not chosen next to it.
 - Real Madelcap imagery leads before abstract decoration.
 - Fixed glass navigation keeps appointment action available without blocking content.
-- Large, plain headlines make the offer clear in seconds.
-- Cards feel like translucent reception windows, not decorative blur.
+- Large serif headlines echo the wordmark and make the offer clear in seconds.
 - Mobile layouts favor one decision at a time.
 
 ## Colors
 
-The palette combines brand orange and white with teal clinical support and ink text so the page stays recognizably Madelcap without becoming one-note.
+The palette is orange plus a neutral ramp. Both come from the isotipo: the pulse is `#fe5800` and the wordmark is `#58595b`. There is no third hue, and the earlier clinical teal has been retired because it appeared nowhere in the brand and survived only as 0.82rem labels.
 
 ### Primary
-- **Brand Orange**: The main CTA, active accents, counters, and WhatsApp-adjacent urgency.
-- **Deep Appointment Orange**: Button gradients, hover depth, and text links that need stronger contrast.
-- **Dark Reception Orange**: Full-width service strip backgrounds and premium hover depth where white text needs a richer brand field.
-- **Burnt Orange**: Secondary stop for the dark service strip gradient.
-- **Soft Orange Reception Light**: Warm page wash and section transitions behind glass cards.
 
-### Secondary
-- **Clinical Teal**: Secondary service labels, diagnostic context, and cool balance against orange.
-- **WhatsApp Green**: Floating WhatsApp action only, preserving the expected channel affordance.
-- **Deep WhatsApp Green**: Hover state for the floating WhatsApp action.
+- **Brand Orange** (`#fe5800`): The literal ink of the isotipo. Reserved for signal — the mark, the pulse motif, numerals, and thin rules.
+- **Action Orange** (`#d24200`): The lightest orange that carries white text at AA. Start of the primary button gradient.
+- **Deep Orange** (`#b03700`): End of the button gradient, and orange text on light surfaces.
+- **Dark Reception Orange** (`#8f2e00`) and **Burnt Orange** (`#a83505`): The full-width service band.
+- **Soft Orange Reception Light** (`#fff1e9`): Warm page wash and section transitions.
 
 ### Neutral
-- **Ink**: Headings, navigation text, and serious clinical information.
-- **Muted Text**: Supporting paragraphs and card descriptions.
-- **Paper**: Warm page background.
-- **Clinic White**: Glass base, cards, and high-clarity reading surfaces.
+
+- **Brand Grey** (`#58595b`): The wordmark grey. Panel labels and mid-tone UI.
+- **Ink** (`#2c2d30`): Headings, body copy, and the footer field. A darker step of the same neutral family.
+- **Muted Text** (`#6e6f74`): Supporting paragraphs and card descriptions.
+- **Paper** (`#fffaf6`) and **Clinic White** (`#ffffff`): Page and card surfaces.
 
 ### Named Rules
 
-**The Orange Means Action Rule.** Bright orange should lead booking and high-intent movement; dark orange can own navigational service bands when the surface needs brand weight.
+**The Signal-Not-Surface Rule.** Brand Orange is 3.2:1 against white and 3.1:1 as text on paper. It never sits under white text and is never used for text below 24px. Anything carrying text uses Action Orange or darker. Every pair in this system was measured, not eyeballed; the previous palette shipped buttons at 3.05:1.
 
-**The Glass Needs a Job Rule.** Blur belongs on navigation, reception data, service cards, and appointment panels where it preserves context behind information.
+**The Orange Means Action Rule.** Bright orange leads booking and high-intent movement; dark orange owns navigational service bands when the surface needs brand weight.
+
+**The Glass Needs a Job Rule.** Blur belongs where it preserves context behind information: the navigation and the reception panel, both of which float over photography. Service cards are solid white. When every surface is translucent, translucency stops signalling hierarchy and becomes wallpaper.
 
 ## Typography
 
-**Display Font:** Aptos with Segoe UI and Arial fallbacks.
+**Display Font:** Fraunces (OFL, self-hosted, variable 600-900, latin subset) with Georgia and Times New Roman fallbacks.
 **Body Font:** Aptos with Segoe UI and Arial fallbacks.
 
-**Character:** The type is direct, civic, and easy to scan. Heavy display headlines give confidence while body copy stays familiar for patients reading on mobile.
+**Character:** The wordmark is a classical serif. Headlines pick that up so the page and the mark read as one brand, while body copy stays in a familiar sans for patients reading on mobile. Only the display face is self-hosted — the identity signal lives in the headings, and body text in a system sans costs nothing and never flashes.
 
 ### Hierarchy
-- **Display** (800, clamp(4.1rem, 11vw, 8.8rem), 0.88): Used only for the first viewport product name.
-- **Headline** (800, clamp(2.35rem, 5vw, 4.8rem), 0.98): Section leads and conversion blocks.
-- **Title** (800, 1rem-1.7rem): Service, doctor, panel, and diagnostic names.
+
+- **Display** (Fraunces 800, clamp(4.1rem, 11vw, 8.8rem), 0.88): The first viewport product name only.
+- **Headline** (Fraunces 800, clamp(2.2rem, 4.4vw, 4rem), 1.02): Section leads and conversion blocks.
+- **Title** (sans 800, 1.08rem-1.6rem): Service, doctor, panel, and diagnostic names.
 - **Body** (400-650, 1rem, 1.55): Descriptions, practical notes, and supporting context.
 - **Label** (800-900, 0.82rem-0.93rem): Navigation, panel labels, and compact action text.
 
 ### Named Rules
 
 **The No-Eyebrow Rule.** Section headings carry the message themselves; small labels above headings are not part of this system.
+
+**The Diacritic Headroom Rule.** Display leading below 1.0 only holds for strings whose wrapped lines carry no diacritic above cap height. A capital Ñ reaches about 0.95em over its baseline and will sit on the line above at 0.88 leading. Check the actual string before tightening leading, and remember the copy is Spanish.
+
+## The Pulse Motif
+
+The isotipo contains a pulse trace inside a broken ring. That trace is the one ownable graphic device the brand has, and it is extracted to `public/images/pulso.svg` (orange) and `pulso-blanco.svg` (white).
+
+It appears in exactly three places, and adding a fourth needs a reason:
+
+- **Favicon and touch icon**, cropped from the logo file itself so the tab shows the mark rather than a squashed wordmark.
+- **Service band**, tiled at 9% opacity across the dark orange field.
+- **Diagnostics section**, one large low-opacity watermark anchored bottom-right.
 
 ## Layout
 
@@ -136,9 +153,11 @@ Desktop layouts use two-column moments and four-column service density. Tablet c
 Depth is a hybrid of translucent glass, real photography, and soft structural shadows. Shadows must have offset and blur; glow-only halos are not part of the system.
 
 ### Shadow Vocabulary
-- **Glass Lift** (`0 24px 70px rgba(62, 54, 45, 0.18)`): Main translucent panels and service cards.
-- **Photo Card Lift** (`0 16px 44px rgba(31, 42, 46, 0.12)`): Professional cards and contained imagery.
-- **Action Lift** (`0 10px 28px rgba(242, 106, 33, 0.3)`): Primary appointment buttons.
+
+- **Glass Lift** (`0 24px 70px rgba(46, 38, 32, 0.16)`): Translucent panels.
+- **Card Lift** (`0 14px 40px rgba(44, 45, 48, 0.1)`): Solid service cards.
+- **Photo Card Lift** (`0 16px 44px rgba(44, 45, 48, 0.12)`): Professional cards and contained imagery.
+- **Action Lift** (`0 10px 28px rgba(210, 66, 0, 0.28)`): Primary appointment buttons.
 
 ## Shapes
 
@@ -147,45 +166,52 @@ The system uses gently curved rectangles for cards and panels, with pill shapes 
 ## Components
 
 ### Buttons
+
 - **Shape:** Pill controls with fixed 44px minimum height.
-- **Primary:** Orange-to-deep-orange background, white text, bold label, and action shadow.
+- **Primary:** Action-to-deep orange background, white text, bold label, and action shadow.
 - **Secondary:** Translucent white surface with ink text for lower-intent navigation.
-- **WhatsApp Floating:** Green pill with a circular icon well; hover deepens the green and lifts the button.
-- **Hover / Focus:** Background shift or soft surface change; focus must remain visible and not depend on color alone.
+- **WhatsApp Floating:** Green pill, preserving the expected channel affordance.
+- **Focus:** A 3px Deep Orange outline at 3px offset on every interactive element. Movement alone is not a focus indicator.
 
 ### Cards / Containers
-- **Corner Style:** Soft card radius at 16px.
-- **Background:** Translucent white glass for service and reception cards; solid white for doctor cards.
-- **Shadow Strategy:** Glass Lift for translucent panels, Photo Card Lift for image cards.
-- **Border:** A subtle white glass border, never a thick colored side rule.
-- **Internal Padding:** 20px for service cards, 28px-34px for larger panels.
+
+- **Service cards:** Solid white, 16px radius, hairline border, Card Lift. The whole card is the WhatsApp link.
+- **Doctor cards:** Solid white with Photo Card Lift.
+- **Glass panels:** Reception panel, clarity card, and appointment close only.
+
+### Photography
+
+Source photography is uneven: a real facade, stock specialty images from mixed origins, and portraits shot in studio, outdoors, and casually. Until it is replaced, the system unifies rather than hides.
+
+- Specialty images carry a shared warm-to-ink tint and are desaturated to 0.82.
+- Portraits carry a lighter warm wash with a foot fade, desaturated to 0.88.
+- Do not add a new specialty image without the same treatment, or the grid returns to reading like a collage.
+
+Replacing the stock specialty images and reshooting portraits against a consistent background remains the single largest available improvement to this page.
 
 ### Navigation
-- **Style:** Fixed, centered compact glass bar with logo, tight text links, delayed sibling blur on sustained hover, and a persistent appointment CTA.
+
+- **Style:** Fixed, centered compact glass bar with logo, tight text links, and a persistent appointment CTA.
+- **Logo:** The PNG is cropped to its content (582x313). The original had 51% empty padding, which rendered the mark at roughly 44x24px inside its box and left the wordmark illegible.
 - **Mobile:** Logo plus circular menu button; expanded links stay inside the glass container.
 
 ### Footer
 
 The footer uses the Madelcap logo on a white plate, a short brand line, and practical links for address, email, Instagram, and Facebook. Footer links remain white at rest and turn Brand Orange on hover or focus.
 
-### Service Strip
-
-The service strip uses dark orange glass tiles over a saturated orange band. Hover lifts the tile, adds a traveling sheen, and keeps the service label legible in white.
-
-### Reception Panel
-
-The signature information module stacks hours, contact, and service breadth in glass-backed rows. It belongs in conversion-heavy contexts where patients need confidence before tapping WhatsApp.
-
 ## Do's and Don'ts
 
 ### Do:
+
 - **Do** keep WhatsApp actions visible and named plainly as booking actions.
 - **Do** lead with real clinic photography when introducing Madelcap.
-- **Do** use glass on surfaces that organize practical information over contextual backgrounds.
+- **Do** measure contrast before introducing a color pair.
 - **Do** keep clinical facts specific and sourced from PRODUCT.md or `madelcap.md`.
 
 ### Don't:
+
 - **Don't** invent testimonials, certifications, prices, insurance claims, or medical outcomes.
+- **Don't** put white text on Brand Orange.
 - **Don't** use glassmorphism as loose decoration with unreadable contrast.
-- **Don't** turn the orange/white brand into a one-color page; keep ink and teal roles active.
+- **Don't** add a third brand hue; the mark has two.
 - **Don't** use generic stock-doctor hero imagery when real facade and team assets exist.
