@@ -5,29 +5,34 @@ Esta landing es estatica. El servidor solo tiene que clonar el repositorio, ejec
 ## 1. Antes de subir al repositorio
 
 1. Verificar que `.env` no se suba. Ya esta en `.gitignore`.
-2. Dejar versionados `index.html`, `src/`, `public/`, `scripts/`, `package.json`, `.env.example`, `README.md`, `DEPLOY.md`, `netlify.toml`, `vercel.json` y `deploy/`.
+2. Dejar versionados `index.html`, `src/`, `public/` (incluida `public/fonts/` con la fuente y su licencia OFL), `scripts/`, `package.json`, `.env.example`, `README.md`, `DEPLOY.md` y `deploy/`.
 3. No versionar `dist/`, `node_modules/`, `.impeccable/` ni capturas `qa-*.png`.
 4. Ejecutar:
 
 ```bash
-pnpm build
+npm run build
 ```
+
+El proyecto no tiene dependencias: el build es `node scripts/build.mjs` y usa
+solo modulos de Node. No hace falta instalar nada antes.
 
 5. Confirmar que `dist/index.html`, `dist/robots.txt` y `dist/sitemap.xml` se generan sin errores.
 
-## 2. Inicializar Git local
+## 2. Subir cambios al repositorio
+
+El repositorio ya existe en `github.com/facndo12/Madelcap` y el VPS despliega
+desde `main`. Los cambios grandes van por branch y pull request, no por push
+directo a `main`:
 
 ```bash
-git init
+git checkout -b mi-rama
 git add .
-git status
-git commit -m "Prepare Madelcap landing for deploy"
-git branch -M main
-git remote add origin git@github.com:USUARIO/REPOSITORIO.git
-git push -u origin main
+git commit -m "Descripcion del cambio"
+git push -u origin mi-rama
+gh pr create --base main
 ```
 
-Si usan HTTPS en vez de SSH para GitHub/GitLab, cambiar la URL del remote.
+Una vez mergeado el PR, seguir con el paso 5 para actualizar el servidor.
 
 ## 3. Preparar el VPS
 
@@ -38,7 +43,6 @@ sudo apt update
 sudo apt install -y nginx git curl
 curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
 sudo apt install -y nodejs
-sudo corepack enable
 ```
 
 Crear carpeta de app:
@@ -72,7 +76,7 @@ PUBLIC_GOOGLE_MAPS_URL=https://www.google.com/maps/place/MADELCAP/
 Build:
 
 ```bash
-pnpm build
+npm run build
 ```
 
 ## 4. Configurar Nginx sin dominio
@@ -105,8 +109,24 @@ http://IP_DEL_VPS/
 ```bash
 cd /var/www/madelcap/current
 git pull --ff-only
-pnpm build
+npm run build
 sudo systemctl reload nginx
+```
+
+**Si cambio `deploy/nginx-madelcap.conf`, el `git pull` no lo aplica.** Ese
+archivo es solo la plantilla versionada; el que usa Nginx vive en
+`/etc/nginx/sites-available/madelcap`. Hay que copiarlo de nuevo:
+
+```bash
+sudo cp deploy/nginx-madelcap.conf /etc/nginx/sites-available/madelcap
+sudo nginx -t
+sudo systemctl reload nginx
+```
+
+Para saber si hace falta, comparar antes de recargar:
+
+```bash
+diff deploy/nginx-madelcap.conf /etc/nginx/sites-available/madelcap
 ```
 
 ## 6. Cuando tengan dominio
@@ -116,7 +136,7 @@ sudo systemctl reload nginx
 3. Rehacer el build:
 
 ```bash
-pnpm build
+npm run build
 ```
 
 4. Instalar Certbot:
