@@ -10,6 +10,11 @@
 # Este contenedor no publica ningun puerto al host: Traefik lo alcanza por la
 # red interna. No hay conflicto posible con lo que ya corre.
 #
+# El hostname sale de MADELCAP_HOST. Por defecto usa el que Hostinger ya
+# provee para este VPS, que no requiere comprar dominio ni tocar DNS.
+# Para usar otro:
+#   MADELCAP_HOST=madelcap.consultoriadigital.io docker compose -f deploy/docker-compose.yml up -d
+#
 # Uso:
 #   cd /var/www/madelcap/current
 #   npm run build
@@ -27,7 +32,7 @@ services:
       - n8n_default
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.madelcap.rule=Host(`madelcap.consultoriadigital.io`)"
+      - "traefik.http.routers.madelcap.rule=Host(`${MADELCAP_HOST:-madelcap.srv1224751.hstgr.cloud}`)"
       - "traefik.http.routers.madelcap.entrypoints=websecure"
       - "traefik.http.routers.madelcap.tls=true"
       - "traefik.http.routers.madelcap.tls.certresolver=mytlschallenge"

@@ -118,23 +118,35 @@ alcanza por la red interna. No se toca ni nginx ni n8n.
 Funciona porque ese Traefik emite certificados con `tlschallenge`, o sea
 TLS-ALPN-01, que valida por el 443 y no necesita el puerto 80.
 
-1. Apuntar un registro `A` de `madelcap.consultoriadigital.io` a la IP del VPS
-   y esperar a que resuelva:
+1. Elegir hostname. **No hace falta comprar dominio.** Hostinger provee un
+   wildcard para el VPS, que es lo que ya usa n8n en
+   `n8n.srv1224751.hstgr.cloud`. Comprobar que resuelva:
 
 ```bash
-dig +short madelcap.consultoriadigital.io @1.1.1.1
+dig +short madelcap.srv1224751.hstgr.cloud @1.1.1.1
 ```
 
-2. Clonar, configurar y construir:
+Si devuelve la IP del VPS, ese es el hostname y no hay nada que configurar:
+es el valor por defecto del compose.
+
+Si se prefiere un subdominio propio, crear el registro `A` apuntando a la IP y
+pasarlo por `MADELCAP_HOST` en el paso 3.
+
+> Sobre el certificado: `hstgr.cloud` es un dominio compartido por todos los
+> VPS de Hostinger. Let's Encrypt limita la emision por dominio registrado, y
+> si `hstgr.cloud` no esta en la Public Suffix List esos limites se comparten
+> entre clientes. Que n8n ya tenga su certificado es buena señal, pero si la
+> emision falla por rate limit, la salida es un subdominio propio.
+
+2. Clonar y construir. `SITE_URL` tiene que coincidir con el hostname elegido,
+   porque de ahi salen el canonical, los Open Graph y el sitemap:
 
 ```bash
 sudo mkdir -p /var/www/madelcap
 sudo chown -R "$USER":"$USER" /var/www/madelcap
 git clone https://github.com/facndo12/Madelcap.git /var/www/madelcap/current
 cd /var/www/madelcap/current
-cp .env.example .env
-# SITE_URL=https://madelcap.consultoriadigital.io
-nano .env
+printf 'SITE_URL=https://madelcap.srv1224751.hstgr.cloud\n' > .env
 npm run build
 ```
 
@@ -142,26 +154,56 @@ npm run build
 
 ```bash
 docker compose -f deploy/docker-compose.yml up -d
-docker logs -f madelcap-web
+docker logs madelcap-web --tail 20
 ```
 
-4. Redirigir http a https desde el nginx del host:
+Con un hostname propio, anteponer la variable:
 
 ```bash
-sudo cp deploy/nginx-host-redirect.conf /etc/nginx/sites-available/madelcap
-sudo ln -s /etc/nginx/sites-available/madelcap /etc/nginx/sites-enabled/madelcap
-sudo nginx -t && sudo systemctl reload nginx
+MADELCAP_HOST=madelcap.midominio.com docker compose -f deploy/docker-compose.yml up -d
 ```
 
-5. Verificar el certificado:
+4. Verificar el certificado:
 
 ```bash
-curl -sI https://madelcap.consultoriadigital.io | head -3
+curl -sI https://madelcap.srv1224751.hstgr.cloud | head -3
 ```
 
 Si da error de TLS, mirar `docker logs n8n-traefik-1 | grep -i acme`. La causa
 mas comun es que el DNS todavia no propago cuando Traefik pidio el
-certificado; reintenta solo.
+certificado; reintenta solo a los minutos.
+
+5. Opcional: redirigir http a https desde el nginx del host. Sin esto, quien
+   escriba `http://` cae en el sitio por defecto de otro proyecto, porque el
+   entrypoint `web` de Traefik escucha un puerto 80 que no esta publicado.
+
+```bash
+sudo cp deploy/nginx-host-redirect.conf /etc/nginx/sites-available/madelcap
+sudo sed -i 's/madelcap.consultoriadigital.io/EL_HOSTNAME_ELEGIDO/' /etc/nginx/sites-available/madelcap
+sudo ln -s /etc/nginx/sites-available/madelcap /etc/nginx/sites-enabled/madelcap
+sudo nginx -t && sudo systemctl reload nginx
+```
+
+### Alternativa sin dominio ni TLS
+
+Solo para revision interna. Publica el sitio en un puerto alto por HTTP plano,
+sin tocar Traefik ni nginx:
+
+```bash
+cd /var/www/madelcap/current
+npm run build
+docker run -d --name madelcap-puerto --restart unless-stopped -p 8081:80 \
+  -v "$PWD/dist:/usr/share/nginx/html:ro" \
+  -v "$PWD/deploy/nginx-container.conf:/etc/nginx/conf.d/default.conf:ro" \
+  nginx:alpine
+```
+
+Queda en `http://IP_DEL_VPS:8081`. Si hay firewall activo, habilitar el puerto.
+
+No usar esto para mostrarle el sitio a un cliente: el navegador lo marca como
+"No seguro" y para una clinica esa es una mala primera impresion. Tampoco
+conviene un certificado autofirmado, que muestra una advertencia roja de
+pantalla completa.
 
 ### Mientras sea un preview
 
