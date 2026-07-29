@@ -262,7 +262,13 @@ button:focus-visible {
 
 .hero {
   position: relative;
-  min-height: 94vh;
+  /* El pliegue tiene que caer dentro del padding superior de la franja
+     de servicios (20px), no sobre las pastillas. Con 94vh la franja
+     asomaba cortada por la mitad y leia como pagina rota. Restar el
+     padding es robusto: si a cierto ancho el texto de las pastillas
+     envuelve y la franja crece, el corte sigue cayendo en naranja
+     solido. */
+  min-height: calc(100vh - 20px);
   display: flex;
   align-items: stretch;
   isolation: isolate;
