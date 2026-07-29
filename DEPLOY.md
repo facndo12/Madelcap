@@ -79,30 +79,34 @@ Build:
 npm run build
 ```
 
-## 4. Configurar Nginx sin dominio
+## 4. Configurar Nginx
 
-Copiar la configuracion incluida:
+> **Si el VPS aloja otros sitios, revisar esto primero.** Ver quien ocupa los
+> puertos y que hostnames ya estan tomados:
+>
+> ```bash
+> sudo ss -tlnp | grep -E ':80\b|:443\b'
+> sudo nginx -T | grep -E 'server_name|listen '
+> ```
+>
+> No borrar `/etc/nginx/sites-enabled/default` sin confirmar que no sea el
+> sitio por defecto de otro proyecto: en un servidor compartido, borrarlo puede
+> dejar sin responder a todos los dominios que dependian de ese bloque.
+
+Copiar la configuracion incluida y reemplazar `MADELCAP_HOST` por el hostname
+real. El bloque no debe quedar como `server_name _` ni como `default_server`,
+porque pasaria a recibir el trafico de todo Host no reconocido.
 
 ```bash
 sudo cp deploy/nginx-madelcap.conf /etc/nginx/sites-available/madelcap
+sudo sed -i 's/MADELCAP_HOST/el.hostname.real/' /etc/nginx/sites-available/madelcap
 sudo ln -s /etc/nginx/sites-available/madelcap /etc/nginx/sites-enabled/madelcap
 sudo nginx -t
 sudo systemctl reload nginx
 ```
 
-Si existe `/etc/nginx/sites-enabled/default`, se puede desactivar para evitar conflictos:
-
-```bash
-sudo rm /etc/nginx/sites-enabled/default
-sudo nginx -t
-sudo systemctl reload nginx
-```
-
-Abrir en el navegador:
-
-```text
-http://IP_DEL_VPS/
-```
+`nginx -t` tiene que pasar antes de recargar. Si falla, el `reload` no aplica
+nada y los sitios existentes siguen andando.
 
 ## 5. Actualizar el sitio despues de cambios
 
