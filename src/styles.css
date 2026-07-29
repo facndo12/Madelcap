@@ -340,9 +340,17 @@ h2 {
 h1 {
   max-width: 9ch;
   margin-bottom: 22px;
-  font-size: clamp(4.1rem, 11vw, 8.8rem);
+  /* Calibrado sobre el ancho medido de "Madelcap" en Montserrat 800
+     (~5.3em) contra la columna de copy, que con el campo topado en
+     1120px mide 688px. A 8.8rem el texto pedia 745px y se metia debajo
+     del panel. El coeficiente vw lo manda el extremo angosto: a 921px
+     de viewport la columna baja a 445px. */
+  font-size: clamp(3.2rem, 8.5vw, 7.2rem);
   line-height: 0.88;
   letter-spacing: -0.01em;
+  /* Red de seguridad: si algun dia el nombre no entra, que corte antes
+     de superponerse al panel. */
+  overflow-wrap: break-word;
 }
 
 .hero-lead {
@@ -1137,9 +1145,11 @@ h1 {
     object-position: center 30%;
   }
 
+  /* Una columna: el limite es el ancho de pantalla menos 44px de padding.
+     A 18vw el nombre pedia 371px en los 346px de un telefono de 390. */
   h1 {
     max-width: 8ch;
-    font-size: clamp(4rem, 18vw, 6.5rem);
+    font-size: clamp(3rem, 15vw, 5.2rem);
   }
 
   .trust-strip,
