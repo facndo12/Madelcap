@@ -17,15 +17,22 @@ cd "$DIR"
 RAMA="$(git rev-parse --abbrev-ref HEAD)"
 
 git fetch --quiet origin "$RAMA"
-LOCAL="$(git rev-parse HEAD)"
-REMOTO="$(git rev-parse "origin/$RAMA")"
+git pull --ff-only --quiet
 
-if [ "$LOCAL" = "$REMOTO" ]; then
+# Se compara contra lo ultimo REALMENTE desplegado, no contra el remoto. Si se
+# comparara local vs remoto, un `git pull` hecho a mano dejaria ambos iguales y
+# el script no reconstruiria nunca: el commit quedaria en el checkout pero el
+# sitio seguiria sirviendo lo viejo para siempre.
+ACTUAL="$(git rev-parse HEAD)"
+DESPLEGADO="$(cat .deploy-sha 2>/dev/null || true)"
+
+if [ "$ACTUAL" = "$DESPLEGADO" ] && [ -d dist ]; then
   exit 0
 fi
 
-log "Cambios en $RAMA: ${LOCAL:0:7} -> ${REMOTO:0:7}"
-git pull --ff-only --quiet
+ANTERIOR="${DESPLEGADO:0:7}"
+[ -z "$ANTERIOR" ] && ANTERIOR="ninguno"
+log "Desplegando ${ACTUAL:0:7} (anterior: $ANTERIOR)"
 
 # El build hace rm -rf dist antes de reconstruir. Si falla a mitad de camino,
 # el sitio se queda sin archivos. Por eso se guarda la version que estaba
@@ -52,4 +59,5 @@ fi
 # vuelve a crear, asi que el contenedor se queda apuntando al directorio viejo
 # (el inode cambio) y seguiria sirviendo lo anterior o nada.
 docker restart "$CONTENEDOR" >/dev/null
-log "Actualizado a ${REMOTO:0:7}"
+echo "$ACTUAL" > .deploy-sha
+log "Actualizado a ${ACTUAL:0:7}"
