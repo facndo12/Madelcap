@@ -318,6 +318,9 @@ h1,
 h2 {
   font-family: var(--font-display);
   font-optical-sizing: auto;
+  /* Explicito: sin esto caen en el bold del navegador (700) y quedan mas
+     livianos de lo que documenta DESIGN.md. */
+  font-weight: 800;
 }
 
 h1 {
