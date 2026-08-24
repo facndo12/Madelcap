@@ -5,29 +5,34 @@ Esta landing es estatica. El servidor solo tiene que clonar el repositorio, ejec
 ## 1. Antes de subir al repositorio
 
 1. Verificar que `.env` no se suba. Ya esta en `.gitignore`.
-2. Dejar versionados `index.html`, `src/`, `public/`, `scripts/`, `package.json`, `.env.example`, `README.md`, `DEPLOY.md`, `netlify.toml`, `vercel.json` y `deploy/`.
+2. Dejar versionados `index.html`, `src/`, `public/` (incluida `public/fonts/` con la fuente y su licencia OFL), `scripts/`, `package.json`, `.env.example`, `README.md`, `DEPLOY.md` y `deploy/`.
 3. No versionar `dist/`, `node_modules/`, `.impeccable/` ni capturas `qa-*.png`.
 4. Ejecutar:
 
 ```bash
-pnpm build
+npm run build
 ```
+
+El proyecto no tiene dependencias: el build es `node scripts/build.mjs` y usa
+solo modulos de Node. No hace falta instalar nada antes.
 
 5. Confirmar que `dist/index.html`, `dist/robots.txt` y `dist/sitemap.xml` se generan sin errores.
 
-## 2. Inicializar Git local
+## 2. Subir cambios al repositorio
+
+El repositorio ya existe en `github.com/facndo12/Madelcap` y el VPS despliega
+desde `main`. Los cambios grandes van por branch y pull request, no por push
+directo a `main`:
 
 ```bash
-git init
+git checkout -b mi-rama
 git add .
-git status
-git commit -m "Prepare Madelcap landing for deploy"
-git branch -M main
-git remote add origin git@github.com:USUARIO/REPOSITORIO.git
-git push -u origin main
+git commit -m "Descripcion del cambio"
+git push -u origin mi-rama
+gh pr create --base main
 ```
 
-Si usan HTTPS en vez de SSH para GitHub/GitLab, cambiar la URL del remote.
+Una vez mergeado el PR, seguir con el paso 5 para actualizar el servidor.
 
 ## 3. Preparar el VPS
 
@@ -38,7 +43,6 @@ sudo apt update
 sudo apt install -y nginx git curl
 curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
 sudo apt install -y nodejs
-sudo corepack enable
 ```
 
 Crear carpeta de app:
@@ -72,41 +76,178 @@ PUBLIC_GOOGLE_MAPS_URL=https://www.google.com/maps/place/MADELCAP/
 Build:
 
 ```bash
-pnpm build
+npm run build
 ```
 
-## 4. Configurar Nginx sin dominio
+## 4. Configurar Nginx
 
-Copiar la configuracion incluida:
+> **Si el VPS aloja otros sitios, revisar esto primero.** Ver quien ocupa los
+> puertos y que hostnames ya estan tomados:
+>
+> ```bash
+> sudo ss -tlnp | grep -E ':80\b|:443\b'
+> sudo nginx -T | grep -E 'server_name|listen '
+> ```
+>
+> No borrar `/etc/nginx/sites-enabled/default` sin confirmar que no sea el
+> sitio por defecto de otro proyecto: en un servidor compartido, borrarlo puede
+> dejar sin responder a todos los dominios que dependian de ese bloque.
+
+Copiar la configuracion incluida y reemplazar `MADELCAP_HOST` por el hostname
+real. El bloque no debe quedar como `server_name _` ni como `default_server`,
+porque pasaria a recibir el trafico de todo Host no reconocido.
 
 ```bash
 sudo cp deploy/nginx-madelcap.conf /etc/nginx/sites-available/madelcap
+sudo sed -i 's/MADELCAP_HOST/el.hostname.real/' /etc/nginx/sites-available/madelcap
 sudo ln -s /etc/nginx/sites-available/madelcap /etc/nginx/sites-enabled/madelcap
 sudo nginx -t
 sudo systemctl reload nginx
 ```
 
-Si existe `/etc/nginx/sites-enabled/default`, se puede desactivar para evitar conflictos:
+`nginx -t` tiene que pasar antes de recargar. Si falla, el `reload` no aplica
+nada y los sitios existentes siguen andando.
+
+## 4-bis. Publicar detras de Traefik (VPS con otros sitios)
+
+Este es el camino usado en el VPS `srv1224751`, donde el puerto 80 lo ocupa el
+nginx del host con varios sitios y el 443 lo ocupa el Traefik del stack de n8n.
+La landing corre en su propio contenedor, sin publicar puertos, y Traefik la
+alcanza por la red interna. No se toca ni nginx ni n8n.
+
+Funciona porque ese Traefik emite certificados con `tlschallenge`, o sea
+TLS-ALPN-01, que valida por el 443 y no necesita el puerto 80.
+
+1. Elegir hostname. **No hace falta comprar dominio.** Hostinger provee un
+   wildcard para el VPS, que es lo que ya usa n8n en
+   `n8n.srv1224751.hstgr.cloud`. Comprobar que resuelva:
 
 ```bash
-sudo rm /etc/nginx/sites-enabled/default
-sudo nginx -t
-sudo systemctl reload nginx
+dig +short madelcap.srv1224751.hstgr.cloud @1.1.1.1
 ```
 
-Abrir en el navegador:
+Si devuelve la IP del VPS, ese es el hostname y no hay nada que configurar:
+es el valor por defecto del compose.
 
-```text
-http://IP_DEL_VPS/
+Si se prefiere un subdominio propio, crear el registro `A` apuntando a la IP y
+pasarlo por `MADELCAP_HOST` en el paso 3.
+
+> Sobre el certificado: `hstgr.cloud` es un dominio compartido por todos los
+> VPS de Hostinger. Let's Encrypt limita la emision por dominio registrado, y
+> si `hstgr.cloud` no esta en la Public Suffix List esos limites se comparten
+> entre clientes. Que n8n ya tenga su certificado es buena señal, pero si la
+> emision falla por rate limit, la salida es un subdominio propio.
+
+2. Clonar y construir. `SITE_URL` tiene que coincidir con el hostname elegido,
+   porque de ahi salen el canonical, los Open Graph y el sitemap:
+
+```bash
+sudo mkdir -p /var/www/madelcap
+sudo chown -R "$USER":"$USER" /var/www/madelcap
+git clone https://github.com/facndo12/Madelcap.git /var/www/madelcap/current
+cd /var/www/madelcap/current
+printf 'SITE_URL=https://madelcap.srv1224751.hstgr.cloud\n' > .env
+npm run build
 ```
+
+3. Levantar el contenedor:
+
+```bash
+docker compose -f deploy/docker-compose.yml up -d
+docker logs madelcap-web --tail 20
+```
+
+Con un hostname propio, anteponer la variable:
+
+```bash
+MADELCAP_HOST=madelcap.midominio.com docker compose -f deploy/docker-compose.yml up -d
+```
+
+4. Verificar el certificado:
+
+```bash
+curl -sI https://madelcap.srv1224751.hstgr.cloud | head -3
+```
+
+Si da error de TLS, mirar `docker logs n8n-traefik-1 | grep -i acme`. La causa
+mas comun es que el DNS todavia no propago cuando Traefik pidio el
+certificado; reintenta solo a los minutos.
+
+5. Opcional: redirigir http a https desde el nginx del host. Sin esto, quien
+   escriba `http://` cae en el sitio por defecto de otro proyecto, porque el
+   entrypoint `web` de Traefik escucha un puerto 80 que no esta publicado.
+
+```bash
+sudo cp deploy/nginx-host-redirect.conf /etc/nginx/sites-available/madelcap
+sudo sed -i 's/madelcap.consultoriadigital.io/EL_HOSTNAME_ELEGIDO/' /etc/nginx/sites-available/madelcap
+sudo ln -s /etc/nginx/sites-available/madelcap /etc/nginx/sites-enabled/madelcap
+sudo nginx -t && sudo systemctl reload nginx
+```
+
+### Alternativa sin dominio ni TLS
+
+Solo para revision interna. Publica el sitio en un puerto alto por HTTP plano,
+sin tocar Traefik ni nginx:
+
+```bash
+cd /var/www/madelcap/current
+npm run build
+docker run -d --name madelcap-puerto --restart unless-stopped -p 8081:80 \
+  -v "$PWD/dist:/usr/share/nginx/html:ro" \
+  -v "$PWD/deploy/nginx-container.conf:/etc/nginx/conf.d/default.conf:ro" \
+  nginx:alpine
+```
+
+Queda en `http://IP_DEL_VPS:8081`. Si hay firewall activo, habilitar el puerto.
+
+No usar esto para mostrarle el sitio a un cliente: el navegador lo marca como
+"No seguro" y para una clinica esa es una mala primera impresion. Tampoco
+conviene un certificado autofirmado, que muestra una advertencia roja de
+pantalla completa.
+
+### Mientras sea un preview
+
+`deploy/nginx-container.conf` manda `X-Robots-Tag: noindex, nofollow`. Es a
+proposito: un preview en un subdominio de consultoriadigital.io no puede
+indexarse, porque competiria con el sitio real de la clinica y dejaria
+contenido duplicado en el dominio equivocado. **Quitar esa cabecera recien
+cuando el sitio pase a su dominio definitivo.**
+
+### Actualizar esta variante
+
+```bash
+cd /var/www/madelcap/current
+git pull --ff-only
+npm run build
+docker restart madelcap-web
+```
+
+El contenedor monta `dist` como volumen, asi que alcanza con reconstruir y
+reiniciar; no hay que rehacer la imagen.
 
 ## 5. Actualizar el sitio despues de cambios
 
 ```bash
 cd /var/www/madelcap/current
 git pull --ff-only
-pnpm build
+npm run build
 sudo systemctl reload nginx
+```
+
+**Si cambio `deploy/nginx-madelcap.conf`, el `git pull` no lo aplica.** Ese
+archivo es solo la plantilla versionada; el que usa Nginx vive en
+`/etc/nginx/sites-available/madelcap`. Hay que copiarlo de nuevo:
+
+```bash
+sudo cp deploy/nginx-madelcap.conf /etc/nginx/sites-available/madelcap
+sudo nginx -t
+sudo systemctl reload nginx
+```
+
+Para saber si hace falta, comparar antes de recargar:
+
+```bash
+diff deploy/nginx-madelcap.conf /etc/nginx/sites-available/madelcap
 ```
 
 ## 6. Cuando tengan dominio
@@ -116,7 +257,7 @@ sudo systemctl reload nginx
 3. Rehacer el build:
 
 ```bash
-pnpm build
+npm run build
 ```
 
 4. Instalar Certbot:

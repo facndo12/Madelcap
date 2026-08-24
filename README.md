@@ -4,9 +4,11 @@ Landing page estatica para Clinica Madelcap, preparada para deploy en Vercel, Ne
 
 ## Desarrollo
 
+El proyecto no tiene dependencias: no hace falta instalar nada.
+
 ```bash
-pnpm build
-pnpm preview
+npm run build
+npm run preview
 ```
 
 El preview local queda en:
@@ -20,7 +22,7 @@ http://localhost:4173/
 Build command:
 
 ```bash
-pnpm build
+npm run build
 ```
 
 Output directory:

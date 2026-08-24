@@ -60,7 +60,17 @@ await cp(path.join(root, "src", "main.js"), path.join(dist, "main.js"));
 
 let html = await readFile(path.join(root, "index.html"), "utf8");
 const env = await readEnv();
-const siteUrl = normalizeSiteUrl(env.SITE_URL);
+
+// En Vercel, Netlify o cualquier CI no existe el archivo .env: la variable
+// llega por el entorno. Sin esta linea el build cae al default de desarrollo y
+// publica el canonical, los Open Graph y el sitemap apuntando a localhost.
+const rawSiteUrl = process.env.SITE_URL || env.SITE_URL;
+if (!rawSiteUrl) {
+  console.warn(
+    "AVISO: no hay SITE_URL ni en el entorno ni en .env. Se construye con http://localhost:4173, que no sirve para publicar."
+  );
+}
+const siteUrl = normalizeSiteUrl(rawSiteUrl);
 html = html.replaceAll("%SITE_URL%", siteUrl);
 await writeFile(path.join(dist, "index.html"), html);
 

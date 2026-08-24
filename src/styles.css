@@ -1,17 +1,49 @@
+/* Montserrat variable, subset latin (cubre ñ y vocales acentuadas).
+   Es la tipografia de las piezas de Instagram de la clinica, asi que la
+   web y el feed leen como la misma marca. Licencia OFL en
+   public/fonts/OFL.txt */
+@font-face {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 400 900;
+  font-display: swap;
+  src: url("/fonts/montserrat-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+2000-206F, U+20AC, U+2122, U+2212, U+FEFF, U+FFFD;
+}
+
 :root {
   color-scheme: light;
-  --orange: #f26a21;
-  --orange-deep: #c94c13;
-  --orange-soft: #fff0e8;
-  --teal: #0b7b83;
-  --ink: #17252a;
-  --muted: #58676d;
-  --line: rgba(23, 37, 42, 0.12);
+
+  /* Naranja de dos tiempos, sacado del isotipo.
+     --orange es SEÑAL: marca, motivo, numerales, filetes. No lleva texto
+     blanco encima ni se usa como texto chico, da 3.2:1 contra blanco.
+     Las superficies que cargan texto usan --orange-action y mas oscuros,
+     que pasan AA. */
+  --orange: #fe5800;
+  --orange-action: #d24200;
+  --orange-deep: #b03700;
+  --orange-dark: #8f2e00;
+  --orange-burnt: #a83505;
+  --orange-soft: #fff1e9;
+
+  /* Rampa neutra anclada en el gris del wordmark (#58595b). */
+  --ink: #2c2d30;
+  --grey: #58595b;
+  --muted: #6e6f74;
+  --line: rgba(44, 45, 48, 0.12);
+  --paper: #fffaf6;
+
   --glass: rgba(255, 255, 255, 0.68);
   --glass-strong: rgba(255, 255, 255, 0.82);
-  --shadow: 0 24px 70px rgba(62, 54, 45, 0.18);
+  --shadow: 0 24px 70px rgba(46, 38, 32, 0.16);
+  --card-shadow: 0 14px 40px rgba(44, 45, 48, 0.1);
   --radius: 16px;
-  font-family: "Aptos", "Segoe UI", Arial, sans-serif;
+
+  --font-display: "Montserrat", "Segoe UI", Arial, sans-serif;
+  --font-body: "Montserrat", "Segoe UI", Arial, sans-serif;
+
+  font-family: var(--font-body);
 }
 
 * {
@@ -27,7 +59,7 @@ html {
 
 body {
   margin: 0;
-  background: #fffaf6;
+  background: var(--paper);
   color: var(--ink);
   font-size: 16px;
   line-height: 1.55;
@@ -39,8 +71,8 @@ body::before {
   inset: 0;
   pointer-events: none;
   background:
-    radial-gradient(circle at 12% 8%, rgba(242, 106, 33, 0.18), transparent 24rem),
-    linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 241, 231, 0.84) 48%, rgba(223, 249, 247, 0.45));
+    radial-gradient(circle at 12% 8%, rgba(254, 88, 0, 0.14), transparent 24rem),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 241, 233, 0.84) 48%, rgba(246, 244, 242, 0.5));
   z-index: -2;
 }
 
@@ -79,7 +111,7 @@ img {
   padding: 7px 8px 7px 14px;
   border-radius: 16px;
   background: rgba(255, 255, 255, 0.72);
-  box-shadow: 0 16px 50px rgba(30, 38, 42, 0.16);
+  box-shadow: 0 16px 50px rgba(44, 45, 48, 0.14);
   transform: translateX(-50%);
   backdrop-filter: blur(22px) saturate(1.24);
   border: 1px solid rgba(255, 255, 255, 0.74);
@@ -90,9 +122,12 @@ img {
   align-items: center;
 }
 
+/* El PNG viene recortado al contenido (582x313, ratio 1.86), asi que la
+   caja acompaña ese ratio y la marca llena el espacio en vez de quedar
+   diminuta dentro de un contain. */
 .brand img {
-  width: 116px;
-  height: 38px;
+  width: 78px;
+  height: 42px;
   object-fit: contain;
 }
 
@@ -119,12 +154,10 @@ img {
   position: relative;
   isolation: isolate;
   padding: 0 12px;
-  color: #304348;
+  color: var(--ink);
   font-size: 0.88rem;
   transition:
     color 180ms ease-out,
-    filter 260ms ease-out,
-    opacity 260ms ease-out,
     transform 260ms ease-out;
 }
 
@@ -134,9 +167,8 @@ img {
   inset: 5px 3px;
   z-index: -1;
   border-radius: 999px;
-  background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.88), rgba(255, 236, 224, 0.72));
-  box-shadow: 0 10px 28px rgba(201, 76, 19, 0.12);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.88), rgba(255, 236, 224, 0.72));
+  box-shadow: 0 10px 28px rgba(176, 55, 0, 0.12);
   opacity: 0;
   transform: scale(0.82);
   transition:
@@ -148,7 +180,6 @@ img {
 .site-nav a:focus-visible {
   color: var(--orange-deep);
   transform: translateY(-1px);
-  outline: none;
 }
 
 .site-nav a:hover::before,
@@ -157,24 +188,14 @@ img {
   transform: scale(1);
 }
 
-.site-nav:has(a:hover) a:not(:hover) {
-  filter: blur(1.6px);
-  opacity: 0.56;
-  transition-delay: 1.5s;
-}
-
-.site-nav:has(a:hover) a:hover {
-  transition-delay: 0s;
-}
-
 .nav-cta,
 .button.primary {
   position: relative;
   overflow: hidden;
   padding: 0 18px;
   color: #fff;
-  background: linear-gradient(135deg, var(--orange), var(--orange-deep));
-  box-shadow: 0 10px 28px rgba(242, 106, 33, 0.3);
+  background: linear-gradient(135deg, var(--orange-action), var(--orange-deep));
+  box-shadow: 0 10px 28px rgba(210, 66, 0, 0.28);
   transition:
     transform 220ms ease-out,
     box-shadow 220ms ease-out,
@@ -197,8 +218,7 @@ img {
 .button.primary:focus-visible {
   filter: saturate(1.08);
   transform: translateY(-2px);
-  box-shadow: 0 16px 38px rgba(242, 106, 33, 0.36);
-  outline: none;
+  box-shadow: 0 16px 38px rgba(210, 66, 0, 0.34);
 }
 
 .nav-cta:hover::after,
@@ -222,9 +242,16 @@ img {
 .button.secondary:hover,
 .button.secondary:focus-visible {
   background: rgba(255, 255, 255, 0.92);
-  box-shadow: 0 12px 30px rgba(23, 37, 42, 0.12);
+  box-shadow: 0 12px 30px rgba(44, 45, 48, 0.12);
   transform: translateY(-2px);
-  outline: none;
+}
+
+/* Foco visible en todo lo interactivo. El desplazamiento de 2px que usan
+   los estados hover no alcanza como indicador de foco por si solo. */
+a:focus-visible,
+button:focus-visible {
+  outline: 3px solid var(--orange-deep);
+  outline-offset: 3px;
 }
 
 .nav-toggle {
@@ -235,9 +262,21 @@ img {
   padding-inline: max(22px, calc((100vw - 1120px) / 2));
 }
 
+/* Hero y franja de servicios ocupan juntos el primer viewport. El hero
+   cede el alto que la franja necesite, asi la franja entra siempre
+   completa: nadie tiene que saber cuanto mide, y si a cierto ancho el
+   texto de las pastillas envuelve y crece, el reparto se reacomoda solo.
+   El hero nunca se encoge por debajo de su contenido; en pantallas bajas
+   el bloque simplemente pasa de 100vh. */
+.first-view {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
 .hero {
   position: relative;
-  min-height: 94vh;
+  flex: 1;
   display: flex;
   align-items: stretch;
   isolation: isolate;
@@ -289,18 +328,35 @@ p {
   margin-top: 0;
 }
 
+h1,
+h2 {
+  font-family: var(--font-display);
+  font-optical-sizing: auto;
+  /* Explicito: sin esto caen en el bold del navegador (700) y quedan mas
+     livianos de lo que documenta DESIGN.md. */
+  font-weight: 800;
+}
+
 h1 {
   max-width: 9ch;
   margin-bottom: 22px;
-  font-size: clamp(4.1rem, 11vw, 8.8rem);
+  /* Calibrado sobre el ancho medido de "Madelcap" en Montserrat 800
+     (~5.3em) contra la columna de copy, que con el campo topado en
+     1120px mide 688px. A 8.8rem el texto pedia 745px y se metia debajo
+     del panel. El coeficiente vw lo manda el extremo angosto: a 921px
+     de viewport la columna baja a 445px. */
+  font-size: clamp(3.2rem, 8.5vw, 7.2rem);
   line-height: 0.88;
-  letter-spacing: 0;
+  letter-spacing: -0.01em;
+  /* Red de seguridad: si algun dia el nombre no entra, que corte antes
+     de superponerse al panel. */
+  overflow-wrap: break-word;
 }
 
 .hero-lead {
   max-width: 650px;
   margin-bottom: 30px;
-  color: #263b41;
+  color: #3a3b3f;
   font-size: clamp(1.2rem, 2.2vw, 1.72rem);
   line-height: 1.25;
   font-weight: 650;
@@ -346,7 +402,7 @@ h1 {
 .reception-panel a {
   color: inherit;
   text-decoration: underline;
-  text-decoration-color: rgba(201, 76, 19, 0.45);
+  text-decoration-color: rgba(176, 55, 0, 0.45);
   text-decoration-thickness: 2px;
   text-underline-offset: 3px;
 }
@@ -359,13 +415,17 @@ h1 {
 
 .panel-label {
   margin-bottom: 4px;
-  color: var(--teal);
+  color: var(--grey);
   font-size: 0.82rem;
   font-weight: 900;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }
 
 .reception-panel strong {
-  font-size: 1.32rem;
+  font-family: var(--font-display);
+  font-size: 1.38rem;
+  font-weight: 700;
 }
 
 .reception-panel span:last-child {
@@ -373,13 +433,24 @@ h1 {
 }
 
 .trust-strip {
+  position: relative;
+  overflow: hidden;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 10px;
   padding-top: 20px;
   padding-bottom: 20px;
-  background:
-    linear-gradient(135deg, #8f310d, #c94c13 48%, #9b390f);
+  background: linear-gradient(135deg, var(--orange-dark), var(--orange-burnt) 48%, var(--orange-dark));
+}
+
+/* El pulso del isotipo como filigrana de la banda. */
+.trust-strip::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("/images/pulso-blanco.svg") repeat-x center / auto 78%;
+  opacity: 0.09;
+  pointer-events: none;
 }
 
 .trust-strip a {
@@ -417,9 +488,12 @@ h1 {
 .trust-strip a:hover,
 .trust-strip a:focus-visible {
   background: rgba(255, 255, 255, 0.22);
-  box-shadow: 0 18px 36px rgba(93, 30, 5, 0.24);
+  box-shadow: 0 18px 36px rgba(80, 26, 0, 0.24);
   transform: translateY(-3px);
-  outline: none;
+}
+
+.trust-strip a:focus-visible {
+  outline-color: #fff;
 }
 
 .trust-strip a:hover::after,
@@ -446,9 +520,8 @@ h1 {
 .intro-grid .section-copy {
   padding: 40px 42px;
   border-radius: 20px;
-  background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.76), rgba(255, 240, 232, 0.62));
-  box-shadow: 0 18px 54px rgba(62, 54, 45, 0.1);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.76), rgba(255, 241, 233, 0.62));
+  box-shadow: 0 18px 54px rgba(46, 38, 32, 0.1);
 }
 
 .intro-grid .section-copy h2 {
@@ -494,8 +567,9 @@ h1 {
   border-radius: 999px;
   color: #fff;
   text-decoration: none;
-  background: linear-gradient(135deg, var(--orange), var(--orange-deep));
-  box-shadow: 0 10px 28px rgba(242, 106, 33, 0.24);
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--orange-action), var(--orange-deep));
+  box-shadow: 0 10px 28px rgba(210, 66, 0, 0.24);
   white-space: nowrap;
   transition:
     transform 220ms ease-out,
@@ -506,9 +580,8 @@ h1 {
 .intro-grid .clarity-card a:hover,
 .intro-grid .clarity-card a:focus-visible {
   filter: saturate(1.08);
-  box-shadow: 0 16px 38px rgba(242, 106, 33, 0.34);
+  box-shadow: 0 16px 38px rgba(210, 66, 0, 0.32);
   transform: translateY(-2px);
-  outline: none;
 }
 
 .section-copy h2,
@@ -516,9 +589,9 @@ h1 {
 .visit-card h2 {
   max-width: 780px;
   margin-bottom: 18px;
-  font-size: clamp(2.35rem, 5vw, 4.8rem);
-  line-height: 0.98;
-  letter-spacing: 0;
+  font-size: clamp(2.2rem, 4.4vw, 4rem);
+  line-height: 1.02;
+  letter-spacing: -0.01em;
 }
 
 .section-copy p,
@@ -536,18 +609,15 @@ h1 {
 
 .clarity-card h3 {
   margin-bottom: 12px;
-  font-size: 1.7rem;
-}
-
-.clarity-card a {
-  color: var(--orange-deep);
-  font-weight: 900;
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 700;
 }
 
 .specialties-section {
   padding-top: 96px;
   padding-bottom: 96px;
-  background: linear-gradient(180deg, rgba(255, 250, 246, 0), rgba(255, 239, 229, 0.82));
+  background: linear-gradient(180deg, rgba(255, 250, 246, 0), rgba(255, 241, 233, 0.82));
 }
 
 .section-heading {
@@ -576,41 +646,43 @@ h1 {
   gap: 14px;
 }
 
+/* Las tarjetas dejan de ser vidrio: solidas leen mejor y devuelven al
+   vidrio su trabajo de jerarquia, que es flotar sobre la fotografia. */
 .service-card {
+  position: relative;
   min-height: 278px;
   display: flex;
   flex-direction: column;
   overflow: hidden;
   padding: 0;
   border-radius: var(--radius);
+  background: #fff;
+  border: 1px solid var(--line);
+  box-shadow: var(--card-shadow);
   color: inherit;
   text-decoration: none;
   transform-origin: center;
   transition:
     transform 220ms ease-out,
-    box-shadow 220ms ease-out,
-    background 220ms ease-out;
+    box-shadow 220ms ease-out;
+}
+
+/* Tinte comun sobre la foto: las 12 imagenes vienen de fuentes distintas
+   y sin esto la grilla lee como un collage. */
+.service-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  z-index: 1;
+  aspect-ratio: 16 / 9;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(254, 88, 0, 0.12), rgba(44, 45, 48, 0.18));
 }
 
 .service-card:hover,
 .service-card:focus-visible {
-  background: rgba(255, 255, 255, 0.8);
-  box-shadow: 0 30px 84px rgba(62, 54, 45, 0.22);
+  box-shadow: 0 30px 84px rgba(44, 45, 48, 0.2);
   transform: scale(1.035) translateY(-4px);
-}
-
-/* La tarjeta entera es el link a WhatsApp: el foco tiene que verse
-   sin depender del color, son 12 paradas de tabulacion nuevas. */
-.service-card:focus-visible {
-  outline: 3px solid var(--orange-deep);
-  outline-offset: 3px;
-}
-
-.service-card .card-action {
-  padding: 0 18px 18px;
-  color: var(--orange-deep);
-  font-weight: 900;
-  font-size: 0.92rem;
 }
 
 .service-card img {
@@ -619,6 +691,7 @@ h1 {
   object-fit: cover;
   object-position: center;
   border-radius: 16px 16px 0 0;
+  filter: saturate(0.82) contrast(1.03);
   transform: scale(1.01);
   transition:
     transform 420ms ease-out,
@@ -627,14 +700,14 @@ h1 {
 
 .service-card:hover img,
 .service-card:focus-visible img {
-  filter: saturate(1.06);
+  filter: saturate(0.95) contrast(1.03);
   transform: scale(1.07);
 }
 
 .service-card h3 {
   margin: 0;
   padding: 18px 18px 8px;
-  font-size: 1.06rem;
+  font-size: 1.2rem;
 }
 
 .service-card p {
@@ -644,11 +717,35 @@ h1 {
   color: var(--muted);
 }
 
+.service-card .card-action {
+  padding: 0 18px 18px;
+  color: var(--orange-deep);
+  font-weight: 900;
+  font-size: 0.92rem;
+}
+
 .diagnostics-section {
+  position: relative;
+  overflow: hidden;
   background: #ffffff;
 }
 
+/* El pulso del isotipo, grande y tenue, le da identidad a la banda de
+   diagnostico sin competir con el texto. */
+.diagnostics-section::before {
+  content: "";
+  position: absolute;
+  right: -3%;
+  bottom: -4%;
+  width: min(560px, 52%);
+  aspect-ratio: 3 / 1;
+  background: url("/images/pulso.svg") no-repeat center / contain;
+  opacity: 0.08;
+  pointer-events: none;
+}
+
 .diagnostic-board {
+  position: relative;
   display: grid;
   grid-auto-rows: 1fr;
   gap: 14px;
@@ -662,8 +759,8 @@ h1 {
   min-height: 124px;
   padding: 22px;
   border-radius: var(--radius);
-  background: #f7fbfb;
-  border: 1px solid rgba(11, 123, 131, 0.14);
+  background: #faf9f8;
+  border: 1px solid var(--line);
 }
 
 .diagnostic-item span {
@@ -675,13 +772,16 @@ h1 {
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  background: var(--orange);
+  /* Fondo con texto blanco: va el naranja profundo, no el puro. */
+  background: var(--orange-deep);
   color: #fff;
   font-weight: 900;
 }
 
 .diagnostic-item strong {
-  font-size: 1.22rem;
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 700;
 }
 
 .diagnostic-item p {
@@ -700,7 +800,6 @@ h1 {
 
 .professionals-section .section-heading h2 {
   max-width: none;
-  white-space: nowrap;
 }
 
 .professionals-section .section-heading p {
@@ -714,22 +813,39 @@ h1 {
 }
 
 .doctor-card {
+  position: relative;
   display: flex;
   flex-direction: column;
   overflow: hidden;
   border-radius: var(--radius);
   background: #fff;
-  box-shadow: 0 16px 44px rgba(31, 42, 46, 0.12);
+  box-shadow: 0 16px 44px rgba(44, 45, 48, 0.12);
   transition:
     transform 220ms ease-out,
-    box-shadow 220ms ease-out,
-    filter 220ms ease-out;
+    box-shadow 220ms ease-out;
+}
+
+/* Los retratos vienen de origenes distintos (estudio, exterior, casual).
+   Un wash calido comun y un desvanecido al pie los emparejan lo suficiente
+   para que la fila lea como un equipo. */
+.doctor-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  z-index: 1;
+  aspect-ratio: 4 / 5;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    rgba(254, 88, 0, 0.05) 0%,
+    rgba(254, 88, 0, 0.03) 55%,
+    rgba(44, 45, 48, 0.14) 100%
+  );
 }
 
 .doctor-card:hover,
 .doctor-card:focus-within {
-  filter: saturate(1.04);
-  box-shadow: 0 26px 62px rgba(31, 42, 46, 0.18);
+  box-shadow: 0 26px 62px rgba(44, 45, 48, 0.18);
   transform: translateY(-6px);
 }
 
@@ -738,6 +854,7 @@ h1 {
   aspect-ratio: 4 / 3.6;
   object-fit: cover;
   object-position: center top;
+  filter: saturate(0.88) contrast(1.03);
 }
 
 .doctor-card div {
@@ -778,7 +895,7 @@ h1 {
 
 .visit-section {
   background:
-    linear-gradient(135deg, rgba(242, 106, 33, 0.16), rgba(11, 123, 131, 0.14)),
+    linear-gradient(135deg, rgba(254, 88, 0, 0.14), rgba(88, 89, 91, 0.12)),
     #fff;
 }
 
@@ -817,7 +934,7 @@ h1 {
   margin: 0;
   overflow: hidden;
   border-radius: 16px;
-  box-shadow: 0 20px 54px rgba(31, 42, 46, 0.16);
+  box-shadow: 0 20px 54px rgba(44, 45, 48, 0.16);
 }
 
 .visit-photo::after {
@@ -825,8 +942,8 @@ h1 {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(23, 37, 42, 0.12)),
-    linear-gradient(135deg, rgba(242, 106, 33, 0.12), transparent 54%);
+    linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(44, 45, 48, 0.12)),
+    linear-gradient(135deg, rgba(254, 88, 0, 0.12), transparent 54%);
   pointer-events: none;
 }
 
@@ -857,16 +974,13 @@ h1 {
   box-shadow: 0 18px 40px rgba(31, 168, 85, 0.34);
   transition:
     transform 220ms ease-out,
-    box-shadow 220ms ease-out,
-    background 220ms ease-out;
+    box-shadow 220ms ease-out;
 }
 
 .floating-whatsapp:hover,
 .floating-whatsapp:focus-visible {
-  background: transparent;
   box-shadow: 0 22px 54px rgba(31, 168, 85, 0.42);
   transform: translateY(-3px);
-  outline: none;
 }
 
 .floating-whatsapp .whatsapp-mark {
@@ -881,7 +995,7 @@ h1 {
   align-items: center;
   gap: 28px;
   padding: 26px max(22px, calc((100vw - 1120px) / 2));
-  background: #17252a;
+  background: var(--ink);
   color: #fff;
 }
 
@@ -893,12 +1007,12 @@ h1 {
 }
 
 .footer-brand img {
-  width: 112px;
-  height: 40px;
+  width: 92px;
+  height: 44px;
   object-fit: contain;
-  padding: 6px;
+  padding: 6px 8px;
   border-radius: 12px;
-  background: rgba(255, 255, 255, 0.92);
+  background: rgba(255, 255, 255, 0.94);
 }
 
 .footer-brand p {
@@ -932,9 +1046,12 @@ h1 {
 .site-footer a:hover,
 .site-footer a:focus-visible {
   color: var(--orange);
-  background: rgba(242, 106, 33, 0.12);
+  background: rgba(254, 88, 0, 0.14);
   transform: translateY(-2px);
-  outline: none;
+}
+
+.site-footer a:focus-visible {
+  outline-color: #fff;
 }
 
 .site-footer a svg {
@@ -956,7 +1073,7 @@ h1 {
     place-items: center;
     border: 0;
     border-radius: 50%;
-    background: rgba(242, 106, 33, 0.12);
+    background: rgba(254, 88, 0, 0.12);
   }
 
   .nav-toggle span:not(.sr-only) {
@@ -1024,6 +1141,12 @@ h1 {
     white-space: normal;
   }
 
+  /* En mobile el contenido del hero ya pasa el alto de pantalla y la
+     franja cae en una o dos columnas: forzar 100vh solo agregaria hueco. */
+  .first-view {
+    min-height: 0;
+  }
+
   .hero {
     min-height: auto;
     padding-top: 112px;
@@ -1046,9 +1169,11 @@ h1 {
     object-position: center 30%;
   }
 
+  /* Una columna: el limite es el ancho de pantalla menos 44px de padding.
+     A 18vw el nombre pedia 371px en los 346px de un telefono de 390. */
   h1 {
     max-width: 8ch;
-    font-size: clamp(4rem, 18vw, 6.5rem);
+    font-size: clamp(3rem, 15vw, 5.2rem);
   }
 
   .trust-strip,
@@ -1060,7 +1185,7 @@ h1 {
 
 @media (max-width: 620px) {
   .brand img {
-    width: 112px;
+    width: 78px;
   }
 
   .hero-actions,
@@ -1099,10 +1224,6 @@ h1 {
     grid-template-columns: 1fr;
   }
 
-  .professionals-section .section-heading h2 {
-    white-space: normal;
-  }
-
   .intro-grid,
   .diagnostics-section,
   .specialties-section,
@@ -1118,5 +1239,18 @@ h1 {
 
   .diagnostic-item {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
   }
 }
