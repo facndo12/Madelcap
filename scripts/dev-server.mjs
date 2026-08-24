@@ -13,6 +13,7 @@ const types = {
   ".jpg": "image/jpeg",
   ".jpeg": "image/jpeg",
   ".png": "image/png",
+  ".svg": "image/svg+xml",
   ".txt": "text/plain; charset=utf-8",
   ".webp": "image/webp",
   ".xml": "application/xml; charset=utf-8"
@@ -34,7 +35,12 @@ createServer(async (request, response) => {
   try {
     const info = await stat(filePath);
     if (info.isDirectory()) filePath = path.join(filePath, "index.html");
-    response.writeHead(200, { "Content-Type": types[path.extname(filePath)] || "application/octet-stream" });
+    response.writeHead(200, {
+      "Content-Type": types[path.extname(filePath)] || "application/octet-stream",
+      // Sin esto el navegador cachea por heuristica y sigue mostrando el
+      // build anterior despues de recompilar.
+      "Cache-Control": "no-store"
+    });
     createReadStream(filePath).pipe(response);
   } catch {
     response.writeHead(404);

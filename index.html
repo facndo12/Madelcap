@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Clinica Madelcap en Nemby | Especialidades, laboratorio y diagnostico</title>
+    <title>Clínica Madelcap en Ñemby | Especialidades, laboratorio y diagnóstico</title>
     <meta
       name="description"
-      content="Clinica Madelcap en Nemby. Agenda por WhatsApp consultas medicas, laboratorio, ecografias, radiografias y mas de 15 especialidades en un solo lugar."
+      content="Clínica Madelcap en Ñemby. Agendá por WhatsApp consultas médicas, laboratorio, ecografías, radiografías y más de 15 especialidades en un solo lugar."
     />
     <meta name="robots" content="index, follow" />
     <meta name="theme-color" content="#f26a21" />
@@ -14,21 +14,25 @@
     <link rel="icon" href="/images/madelcapLogo.png" />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="es_PY" />
-    <meta property="og:title" content="Clinica Madelcap en Nemby" />
+    <meta property="og:title" content="Clínica Madelcap en Ñemby" />
     <meta
       property="og:description"
-      content="Atencion medica cercana en Nemby: especialidades, laboratorio y estudios de diagnostico con agenda por WhatsApp."
+      content="Atención médica cercana en Ñemby: especialidades, laboratorio y estudios de diagnóstico con agenda por WhatsApp."
     />
+    <!-- og:image queda en JPEG a proposito: las previews de enlace de
+         WhatsApp son mas confiables con JPEG que con WebP. -->
     <meta property="og:image" content="%SITE_URL%/images/madelcapFachada.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="900" />
     <meta property="og:url" content="%SITE_URL%/" />
     <meta name="twitter:card" content="summary_large_image" />
-    <link rel="preload" as="image" href="/images/madelcapFachada.jpg" />
+    <link rel="preload" as="image" type="image/webp" href="/images/madelcapFachada.webp" />
     <link rel="stylesheet" href="/styles.css" />
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "MedicalClinic",
-        "name": "Clinica Madelcap",
+        "name": "Clínica Madelcap",
         "slogan": "Tu salud, nuestra prioridad",
         "url": "%SITE_URL%/",
         "image": "%SITE_URL%/images/madelcapFachada.jpg",
@@ -39,7 +43,7 @@
         "address": {
           "@type": "PostalAddress",
           "streetAddress": "Teniente Rivas 136",
-          "addressLocality": "Nemby",
+          "addressLocality": "Ñemby",
           "addressRegion": "Central",
           "addressCountry": "PY"
         },
@@ -86,22 +90,22 @@
       FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, and DESIGN.md
     -->
     <header class="site-header" data-nav>
-      <a class="brand" href="#inicio" aria-label="Clinica Madelcap inicio">
-        <img src="/images/madelcapLogo.png" alt="Clinica Madelcap" />
+      <a class="brand" href="#inicio" aria-label="Clínica Madelcap inicio">
+        <img src="/images/madelcapLogo.png" alt="Clínica Madelcap" width="750" height="500" />
       </a>
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
         <span></span>
         <span></span>
         <span></span>
-        <span class="sr-only">Abrir menu</span>
+        <span class="sr-only" data-toggle-label>Abrir menú</span>
       </button>
       <nav id="site-nav" class="site-nav" aria-label="Principal">
         <a href="#especialidades">Especialidades</a>
         <a href="#profesionales">Profesionales</a>
         <a href="#estudios">Estudios</a>
-        <a href="#ubicacion">Ubicacion</a>
+        <a href="#ubicacion">Ubicación</a>
       </nav>
-      <a class="nav-cta" href="https://wa.me/595971754545?text=Hola%20Clinica%20Madelcap%2C%20quiero%20agendar%20un%20turno" target="_blank" rel="noopener">
+      <a class="nav-cta" href="https://wa.me/595971754545?text=Hola%20Cl%C3%ADnica%20Madelcap%2C%20quiero%20agendar%20un%20turno" target="_blank" rel="noopener">
         Agendar
       </a>
     </header>
@@ -109,172 +113,246 @@
     <main id="inicio">
       <section class="hero section-band">
         <div class="hero-media" aria-hidden="true">
-          <img src="/images/madelcapFachada.jpg" alt="" />
+          <img src="/images/madelcapFachada.webp" alt="" width="1600" height="1200" fetchpriority="high" />
         </div>
         <div class="hero-content">
           <div class="hero-copy">
-            <h1>Clinica Madelcap</h1>
+            <h1>Clínica Madelcap</h1>
             <p class="hero-lead">
-              Especialidades medicas, laboratorio y estudios de diagnostico en un solo lugar, con atencion cercana para vos y tu familia.
+              Especialidades médicas, laboratorio y estudios de diagnóstico en Ñemby, con atención cercana para vos y tu familia.
             </p>
             <div class="hero-actions">
-              <a class="button primary" href="https://wa.me/595971754545?text=Hola%20Clinica%20Madelcap%2C%20quiero%20agendar%20un%20turno" target="_blank" rel="noopener">
+              <a class="button primary" href="https://wa.me/595971754545?text=Hola%20Cl%C3%ADnica%20Madelcap%2C%20quiero%20agendar%20un%20turno" target="_blank" rel="noopener">
                 Agendar por WhatsApp
               </a>
               <a class="button secondary" href="#especialidades">Ver especialidades</a>
             </div>
-            <p class="local-line">Teniente Rivas 136, Centro, Nemby</p>
+            <p class="local-line">Teniente Rivas 136, Centro, Ñemby</p>
           </div>
 
-          <aside class="reception-panel glass-panel" aria-label="Informacion rapida">
+          <aside class="reception-panel glass-panel" aria-label="Información rápida">
             <div>
-              <span class="panel-label">Atencion</span>
+              <span class="panel-label">Atención</span>
               <strong>Lun a Vie 07:00 a 18:00</strong>
-              <span>Sabados hasta las 12:00</span>
+              <span>Sábados hasta las 12:00</span>
             </div>
             <div>
               <span class="panel-label">Contacto directo</span>
-              <strong>0971 754 545</strong>
+              <strong><a href="tel:+595971754545">0971 754 545</a></strong>
               <span>Efectivo, QR y tarjetas</span>
             </div>
             <div>
               <span class="panel-label">En un solo lugar</span>
               <strong>+15 especialidades</strong>
-              <span>Laboratorio, rayos X, ecografia y ECG</span>
+              <span>Laboratorio, rayos X, ecografía y ECG</span>
             </div>
           </aside>
         </div>
       </section>
 
       <section class="section-band trust-strip" aria-label="Servicios principales">
-        <a href="#especialidades">Consultas medicas</a>
-        <a href="#estudios">Laboratorio clinico</a>
-        <a href="#estudios">Ecografia y radiografia</a>
-        <a href="#ubicacion">Ubicacion accesible</a>
+        <a href="#especialidades">Consultas médicas</a>
+        <a href="#estudios">Laboratorio clínico</a>
+        <a href="#estudios">Ecografía y radiografía</a>
+        <a href="#ubicacion">Ubicación accesible</a>
       </section>
 
       <section class="section-band intro-grid">
         <div class="section-copy">
-          <h2>Atencion medica integral, cerca de casa.</h2>
+          <h2>Atención médica integral, cerca de casa.</h2>
           <p>
-            Desde 2015, Madelcap acompana a pacientes y familias de Nemby con consultas, diagnostico y servicios de apoyo pensados para resolver mas en una misma visita.
+            Desde 2015, Madelcap acompaña a pacientes y familias de Ñemby con consultas, diagnóstico y servicios de apoyo pensados para resolver más en una misma visita.
           </p>
         </div>
         <div class="glass-panel clarity-card">
           <h3>Antes de tu estudio</h3>
-          <p>Para laboratorio, ecografias, radiografias y ecocardiogramas se recomienda presentar orden medica. La preparacion depende del estudio y se confirma al agendar.</p>
-          <a href="https://wa.me/595971754545?text=Hola%20Clinica%20Madelcap%2C%20quiero%20consultar%20la%20preparacion%20para%20un%20estudio" target="_blank" rel="noopener">Consultar preparacion</a>
+          <p>Para laboratorio, ecografías, radiografías y ecocardiogramas se recomienda presentar orden médica. La preparación depende del estudio y se confirma al agendar.</p>
+          <a href="https://wa.me/595971754545?text=Hola%20Cl%C3%ADnica%20Madelcap%2C%20quiero%20consultar%20la%20preparaci%C3%B3n%20para%20un%20estudio" target="_blank" rel="noopener">Consultar preparación</a>
         </div>
       </section>
 
       <section id="especialidades" class="section-band specialties-section">
         <div class="section-heading">
           <h2>Especialidades para cuidar cada etapa.</h2>
-          <p>Consulta disponibilidad por WhatsApp antes de acercarte; algunas atenciones son por turno y otras por orden de llegada.</p>
+          <p>Consultá disponibilidad por WhatsApp antes de acercarte; algunas atenciones son por turno y otras por orden de llegada.</p>
         </div>
         <div class="specialty-grid">
-          <article class="service-card glass-card"><img src="/images/cardiologiaAdultos.jpeg" alt="Cardiologia adulto" loading="lazy" /><h3>Cardiologia adulto</h3><p>Prevencion, diagnostico y tratamiento de enfermedades del corazon y la circulacion, como hipertension, arritmias, colesterol alto, insuficiencia cardiaca y enfermedad coronaria.</p></article>
-          <article class="service-card glass-card"><img src="/images/cardiologiaPediatrica.jpg" alt="Cardiologia pediatrica" loading="lazy" /><h3>Cardiologia pediatrica</h3><p>Evaluacion y seguimiento cardiologico para ninos y adolescentes.</p></article>
-          <article class="service-card glass-card"><img src="/images/diabetologia.webp" alt="Diabetologia" loading="lazy" /><h3>Diabetologia</h3><p>Control, educacion y seguimiento para diabetes y prediabetes.</p></article>
-          <article class="service-card glass-card"><img src="/images/clinicaMedica.webp" alt="Clinica medica" loading="lazy" /><h3>Clinica medica</h3><p>Chequeos, controles de salud y atencion de enfermedades frecuentes.</p></article>
-          <article class="service-card glass-card"><img src="/images/ginecologia.jpg" alt="Ginecologia" loading="lazy" /><h3>Ginecologia</h3><p>Controles ginecologicos, PAP, colposcopia y salud de la mujer.</p></article>
-          <article class="service-card glass-card"><img src="/images/traumatologia.jpg" alt="Traumatologia" loading="lazy" /><h3>Traumatologia</h3><p>Lesiones, fracturas, dolores articulares y patologias de columna.</p></article>
-          <article class="service-card glass-card"><img src="/images/urologia.jpg" alt="Urologia" loading="lazy" /><h3>Urologia</h3><p>Calculos, prostata, infecciones urinarias e incontinencia.</p></article>
-          <article class="service-card glass-card"><img src="/images/psicologia.jpg" alt="Psicologia" loading="lazy" /><h3>Psicologia</h3><p>Acompanamiento para ansiedad, estres, depresion y desarrollo personal.</p></article>
-          <article class="service-card glass-card"><img src="/images/nutricion.webp" alt="Nutricion" loading="lazy" /><h3>Nutricion</h3><p>Planes personalizados para obesidad, diabetes y salud metabolica.</p></article>
-          <article class="service-card glass-card"><img src="/images/neurologia.jpg" alt="Neurologia" loading="lazy" /><h3>Neurologia</h3><p>Cefaleas, migranas, epilepsia, ACV, Parkinson y otros trastornos.</p></article>
-          <article class="service-card glass-card"><img src="/images/dermatologia.jpeg" alt="Dermatologia" loading="lazy" /><h3>Dermatologia</h3><p>Prevencion, diagnostico y tratamiento de enfermedades de la piel, cabello y unas, como acne, manchas, alergias, infecciones, dermatitis y lesiones cutaneas.</p></article>
-          <article class="service-card glass-card"><img src="/images/otorrinolaringologia.jpg" alt="Otorrinolaringologia" loading="lazy" /><h3>Otorrinolaringologia</h3><p>Oido, nariz, garganta, alergias, vertigo y audicion.</p></article>
+          <a class="service-card glass-card" href="https://wa.me/595971754545?text=Hola%20Cl%C3%ADnica%20Madelcap%2C%20quiero%20agendar%20un%20turno%20de%20Cardiolog%C3%ADa%20adulto." target="_blank" rel="noopener">
+            <img src="/images/cardiologiaAdulto.webp" alt="Cardiología adulto" width="800" height="534" loading="lazy" decoding="async" />
+            <h3>Cardiología adulto</h3>
+            <p>Prevención, diagnóstico y tratamiento de enfermedades del corazón y la circulación, como hipertensión, arritmias, colesterol alto, insuficiencia cardíaca y enfermedad coronaria.</p>
+            <span class="card-action">Agendar por WhatsApp</span>
+          </a>
+          <a class="service-card glass-card" href="https://wa.me/595971754545?text=Hola%20Cl%C3%ADnica%20Madelcap%2C%20quiero%20agendar%20un%20turno%20de%20Cardiolog%C3%ADa%20pedi%C3%A1trica." target="_blank" rel="noopener">
+            <img src="/images/cardiologiaPediatrica.webp" alt="Cardiología pediátrica" width="800" height="534" loading="lazy" decoding="async" />
+            <h3>Cardiología pediátrica</h3>
+            <p>Evaluación y seguimiento cardiológico para niños y adolescentes.</p>
+            <span class="card-action">Agendar por WhatsApp</span>
+          </a>
+          <a class="service-card glass-card" href="https://wa.me/595971754545?text=Hola%20Cl%C3%ADnica%20Madelcap%2C%20quiero%20agendar%20un%20turno%20de%20Diabetolog%C3%ADa." target="_blank" rel="noopener">
+            <img src="/images/diabetologia.webp" alt="Diabetología" width="800" height="800" loading="lazy" decoding="async" />
+            <h3>Diabetología</h3>
+            <p>Control, educación y seguimiento para diabetes y prediabetes.</p>
+            <span class="card-action">Agendar por WhatsApp</span>
+          </a>
+          <a class="service-card glass-card" href="https://wa.me/595971754545?text=Hola%20Cl%C3%ADnica%20Madelcap%2C%20quiero%20agendar%20un%20turno%20de%20Cl%C3%ADnica%20m%C3%A9dica." target="_blank" rel="noopener">
+            <img src="/images/clinicaMedica.webp" alt="Clínica médica" width="800" height="534" loading="lazy" decoding="async" />
+            <h3>Clínica médica</h3>
+            <p>Chequeos, controles de salud y atención de enfermedades frecuentes.</p>
+            <span class="card-action">Agendar por WhatsApp</span>
+          </a>
+          <a class="service-card glass-card" href="https://wa.me/595971754545?text=Hola%20Cl%C3%ADnica%20Madelcap%2C%20quiero%20agendar%20un%20turno%20de%20Ginecolog%C3%ADa." target="_blank" rel="noopener">
+            <img src="/images/ginecologia.webp" alt="Ginecología" width="800" height="534" loading="lazy" decoding="async" />
+            <h3>Ginecología</h3>
+            <p>Controles ginecológicos, PAP, colposcopía y salud de la mujer.</p>
+            <span class="card-action">Agendar por WhatsApp</span>
+          </a>
+          <a class="service-card glass-card" href="https://wa.me/595971754545?text=Hola%20Cl%C3%ADnica%20Madelcap%2C%20quiero%20agendar%20un%20turno%20de%20Traumatolog%C3%ADa." target="_blank" rel="noopener">
+            <img src="/images/traumatologia.webp" alt="Traumatología" width="800" height="450" loading="lazy" decoding="async" />
+            <h3>Traumatología</h3>
+            <p>Lesiones, fracturas, dolores articulares y patologías de columna.</p>
+            <span class="card-action">Agendar por WhatsApp</span>
+          </a>
+          <a class="service-card glass-card" href="https://wa.me/595971754545?text=Hola%20Cl%C3%ADnica%20Madelcap%2C%20quiero%20agendar%20un%20turno%20de%20Urolog%C3%ADa." target="_blank" rel="noopener">
+            <img src="/images/urologia.webp" alt="Urología" width="800" height="534" loading="lazy" decoding="async" />
+            <h3>Urología</h3>
+            <p>Cálculos, próstata, infecciones urinarias e incontinencia.</p>
+            <span class="card-action">Agendar por WhatsApp</span>
+          </a>
+          <a class="service-card glass-card" href="https://wa.me/595971754545?text=Hola%20Cl%C3%ADnica%20Madelcap%2C%20quiero%20agendar%20un%20turno%20de%20Psicolog%C3%ADa." target="_blank" rel="noopener">
+            <img src="/images/psicologia.webp" alt="Psicología" width="800" height="534" loading="lazy" decoding="async" />
+            <h3>Psicología</h3>
+            <p>Acompañamiento para ansiedad, estrés, depresión y desarrollo personal.</p>
+            <span class="card-action">Agendar por WhatsApp</span>
+          </a>
+          <a class="service-card glass-card" href="https://wa.me/595971754545?text=Hola%20Cl%C3%ADnica%20Madelcap%2C%20quiero%20agendar%20un%20turno%20de%20Nutrici%C3%B3n." target="_blank" rel="noopener">
+            <img src="/images/nutricion.webp" alt="Nutrición" width="800" height="534" loading="lazy" decoding="async" />
+            <h3>Nutrición</h3>
+            <p>Planes personalizados para obesidad, diabetes y salud metabólica.</p>
+            <span class="card-action">Agendar por WhatsApp</span>
+          </a>
+          <a class="service-card glass-card" href="https://wa.me/595971754545?text=Hola%20Cl%C3%ADnica%20Madelcap%2C%20quiero%20agendar%20un%20turno%20de%20Neurolog%C3%ADa." target="_blank" rel="noopener">
+            <img src="/images/neurologia.webp" alt="Neurología" width="800" height="534" loading="lazy" decoding="async" />
+            <h3>Neurología</h3>
+            <p>Cefaleas, migrañas, epilepsia, ACV, Parkinson y otros trastornos.</p>
+            <span class="card-action">Agendar por WhatsApp</span>
+          </a>
+          <a class="service-card glass-card" href="https://wa.me/595971754545?text=Hola%20Cl%C3%ADnica%20Madelcap%2C%20quiero%20agendar%20un%20turno%20de%20Dermatolog%C3%ADa." target="_blank" rel="noopener">
+            <img src="/images/dermatologia.webp" alt="Dermatología" width="800" height="534" loading="lazy" decoding="async" />
+            <h3>Dermatología</h3>
+            <p>Prevención, diagnóstico y tratamiento de enfermedades de la piel, cabello y uñas, como acné, manchas, alergias, infecciones, dermatitis y lesiones cutáneas.</p>
+            <span class="card-action">Agendar por WhatsApp</span>
+          </a>
+          <a class="service-card glass-card" href="https://wa.me/595971754545?text=Hola%20Cl%C3%ADnica%20Madelcap%2C%20quiero%20agendar%20un%20turno%20de%20Otorrinolaringolog%C3%ADa." target="_blank" rel="noopener">
+            <img src="/images/otorrinolaringologia.webp" alt="Otorrinolaringología" width="800" height="454" loading="lazy" decoding="async" />
+            <h3>Otorrinolaringología</h3>
+            <p>Oído, nariz, garganta, alergias, vértigo y audición.</p>
+            <span class="card-action">Agendar por WhatsApp</span>
+          </a>
         </div>
       </section>
 
       <section id="estudios" class="section-band diagnostics-section">
         <div class="section-copy">
-          <h2>Diagnostico y apoyo clinico sin vueltas.</h2>
-          <p>Laboratorio de analisis clinicos, radiografia, ecografia y electrocardiograma para complementar la consulta y avanzar con indicaciones claras.</p>
+          <h2>Diagnóstico y apoyo clínico sin vueltas.</h2>
+          <p>Laboratorio de análisis clínicos, radiografía, ecografía y electrocardiograma para complementar la consulta y avanzar con indicaciones claras.</p>
         </div>
         <div class="diagnostic-board">
-          <div class="diagnostic-item"><span>01</span><strong>Laboratorio</strong><p>La mayoria de los analisis se entrega el mismo dia.</p></div>
-          <div class="diagnostic-item"><span>02</span><strong>Imagenes</strong><p>Ecografias y radiografias con preparacion informada al agendar.</p></div>
-          <div class="diagnostic-item"><span>03</span><strong>Cardio</strong><p>Electrocardiograma, ecocardiograma y ergometria segun indicacion.</p></div>
+          <div class="diagnostic-item"><span>01</span><strong>Laboratorio</strong><p>La mayoría de los análisis se entrega el mismo día.</p></div>
+          <div class="diagnostic-item"><span>02</span><strong>Imágenes</strong><p>Ecografías y radiografías con preparación informada al agendar.</p></div>
+          <div class="diagnostic-item"><span>03</span><strong>Cardio</strong><p>Electrocardiograma, ecocardiograma y ergometría según indicación.</p></div>
         </div>
       </section>
 
       <section id="profesionales" class="section-band professionals-section">
         <div class="section-heading">
           <h2>Profesionales destacados</h2>
-          <p>Un equipo multidisciplinario para consultas, seguimiento y acompanamiento profesional.</p>
+          <p>Un equipo multidisciplinario para consultas, seguimiento y acompañamiento profesional.</p>
         </div>
         <div class="professional-rail" aria-label="Profesionales">
           <article class="doctor-card">
             <img src="/images/irala.jpeg" alt="Dr. Marcelo Irala" loading="lazy" />
             <div>
               <h3>Dr. Marcelo Irala</h3>
-              <p class="doctor-specialty">Cardiologo infantil</p>
-              <p>Especialista en Cardiologia Pediatrica por el Hospital de Clinicas UNA y en Ecocardiografia Pediatrica por Ecokids, Sao Paulo.</p>
-              <p class="doctor-focus">Consultas, ECG y ecocardiograma de 0 a 19 anos. Soplos, dolor toracico, cansancio facil, arritmias, desmayos, coloracion azul y cardiopatias congenitas.</p>
+              <p class="doctor-specialty">Cardiólogo infantil</p>
+              <p>Especialista en Cardiología Pediátrica por el Hospital de Clínicas UNA y en Ecocardiografía Pediátrica por Ecokids, São Paulo.</p>
+              <p class="doctor-focus">Consultas, ECG y ecocardiograma de 0 a 19 años. Soplos, dolor torácico, cansancio fácil, arritmias, desmayos, coloración azul y cardiopatías congénitas.</p>
             </div>
           </article>
           <article class="doctor-card">
-            <img src="/images/DrFerreira.jpg" alt="Dr. Fabian Ferreira" loading="lazy" />
+            <img src="/images/DrFerreira.webp" alt="Dr. Fabián Ferreira" width="600" height="638" loading="lazy" decoding="async" />
             <div>
-              <h3>Dr. Fabian Ferreira</h3>
-              <p class="doctor-specialty">Psicologo clinico - Psicoterapeuta</p>
-              <p>Experiencia en evaluacion, diagnostico e intervencion psicologica en adolescentes y adultos.</p>
-              <p class="doctor-focus">Aborda ansiedad, depresion, estres, dificultades emocionales y desarrollo personal desde un enfoque basado en evidencia y centrado en cada paciente.</p>
+              <h3>Dr. Fabián Ferreira</h3>
+              <p class="doctor-specialty">Psicólogo clínico - Psicoterapeuta</p>
+              <p>Experiencia en evaluación, diagnóstico e intervención psicológica en adolescentes y adultos.</p>
+              <p class="doctor-focus">Aborda ansiedad, depresión, estrés, dificultades emocionales y desarrollo personal desde un enfoque basado en evidencia y centrado en cada paciente.</p>
             </div>
           </article>
           <article class="doctor-card">
-            <img src="/images/centurion.jpeg" alt="Lic. Sara Streich de Centurion" loading="lazy" />
+            <img src="/images/DrBurgos.webp" alt="Dr. Richard Burgos" width="600" height="800" loading="lazy" decoding="async" />
             <div>
-              <h3>Lic. Sara Streich de Centurion</h3>
-              <p class="doctor-specialty">Psicologa clinica - Reg. Prof. N.o 9486</p>
-              <p>Evaluacion y tratamiento psicologico con enfoque en Terapia Cognitivo-Conductual para ninos desde siete anos, adolescentes y adultos.</p>
-              <p class="doctor-focus">Acompana procesos de ansiedad, depresion, autoestima, manejo emocional, desarrollo personal y habilidades socioemocionales.</p>
+              <h3>Dr. Richard Burgos</h3>
+              <p class="doctor-specialty">Urología</p>
+            </div>
+          </article>
+          <article class="doctor-card">
+            <img src="/images/centurion.jpeg" alt="Lic. Sara Streich de Centurión" loading="lazy" />
+            <div>
+              <h3>Lic. Sara Streich de Centurión</h3>
+              <p class="doctor-specialty">Psicóloga clínica - Reg. Prof. N.o 9486</p>
+              <p>Evaluación y tratamiento psicológico con enfoque en Terapia Cognitivo-Conductual para niños desde siete años, adolescentes y adultos.</p>
+              <p class="doctor-focus">Acompaña procesos de ansiedad, depresión, autoestima, manejo emocional, desarrollo personal y habilidades socioemocionales.</p>
             </div>
           </article>
           <article class="doctor-card">
             <img src="/images/samudio.jpeg" alt="Betiana Mariselle Merzario Samudio" loading="lazy" />
             <div>
               <h3>Betiana Mariselle Merzario Samudio</h3>
-              <p class="doctor-specialty">Fonoaudiologa - Reg. Prof. N.o 536</p>
-              <p>Diplomada en Estimulacion Temprana, Trastorno del Espectro Autista y Terapia ABA con enfasis en autismo.</p>
-              <p class="doctor-focus">Evaluacion e intervencion en ninos y adolescentes con alteraciones del lenguaje, habla y comunicacion, con orientacion a familias.</p>
+              <p class="doctor-specialty">Fonoaudióloga - Reg. Prof. N.o 536</p>
+              <p>Diplomada en Estimulación Temprana, Trastorno del Espectro Autista y Terapia ABA con énfasis en autismo.</p>
+              <p class="doctor-focus">Evaluación e intervención en niños y adolescentes con alteraciones del lenguaje, habla y comunicación, con orientación a familias.</p>
             </div>
           </article>
           <article class="doctor-card">
-            <img src="/images/DrMachuca.jpg" alt="Dr. Viviano Barreto Machuca" loading="lazy" />
+            <img src="/images/DrMachuca.webp" alt="Dr. Viviano Barreto Machuca" width="600" height="600" loading="lazy" decoding="async" />
             <div>
               <h3>Dr. Viviano Barreto Machuca</h3>
-              <p class="doctor-specialty">Medicina interna - Diabetes y pie diabetico</p>
-              <p>Especialista en Medicina Interna, Diabetes y pie diabetico. Residencia en el Hospital Nacional y posgrado en Diabetes por la UCA.</p>
-              <p class="doctor-focus">Formacion complementaria en pie diabetico con diplomaturas en Argentina y Mexico.</p>
+              <p class="doctor-specialty">Medicina interna - Diabetes y pie diabético</p>
+              <p>Especialista en Medicina Interna, Diabetes y pie diabético. Residencia en el Hospital Nacional y posgrado en Diabetes por la UCA.</p>
+              <p class="doctor-focus">Formación complementaria en pie diabético con diplomaturas en Argentina y México.</p>
             </div>
           </article>
           <article class="doctor-card">
-            <img src="/images/licSpital.jpg" alt="Lic. Laura Quinonez Spital" loading="lazy" />
+            <img src="/images/Aguilar.webp" alt="Marcelo Mauri Aguilar" width="600" height="800" loading="lazy" decoding="async" />
             <div>
-              <h3>Lic. Laura Quinonez Spital</h3>
-              <p class="doctor-specialty">Nutricion clinica - Obesidad y enfermedades metabolicas</p>
-              <p>Maestria en Nutricion Clinica, coaching en obesidad y comorbilidades, antropometrista ISAK I.</p>
-              <p class="doctor-focus">Atencion nutricional personalizada para obesidad, diabetes y sindrome metabolico.</p>
+              <h3>Marcelo Mauri Aguilar</h3>
+              <p class="doctor-specialty">Médico general</p>
             </div>
           </article>
           <article class="doctor-card">
-            <img src="/images/gonzalez.jpeg" alt="Dr. Angel Gonzalez" loading="lazy" />
+            <img src="/images/licSpital.webp" alt="Lic. Laura Quiñonez Spital" width="600" height="726" loading="lazy" decoding="async" />
             <div>
-              <h3>Dr. Angel Gonzalez</h3>
-              <p class="doctor-specialty">Cirugia vascular y flebologia</p>
-              <p>Prevencion, diagnostico y tratamiento de enfermedades de las arterias y las venas.</p>
-              <p class="doctor-focus">Varices, aranitas vasculares, insuficiencia venosa, trombosis, circulacion, enfermedad arterial periferica y arterias carotidas.</p>
+              <h3>Lic. Laura Quiñonez Spital</h3>
+              <p class="doctor-specialty">Nutrición clínica - Obesidad y enfermedades metabólicas</p>
+              <p>Maestría en Nutrición Clínica, coaching en obesidad y comorbilidades, antropometrista ISAK I.</p>
+              <p class="doctor-focus">Atención nutricional personalizada para obesidad, diabetes y síndrome metabólico.</p>
+            </div>
+          </article>
+          <article class="doctor-card">
+            <img src="/images/gonzalez.jpeg" alt="Dr. Ángel González" loading="lazy" />
+            <div>
+              <h3>Dr. Ángel González</h3>
+              <p class="doctor-specialty">Cirugía vascular y flebología</p>
+              <p>Prevención, diagnóstico y tratamiento de enfermedades de las arterias y las venas.</p>
+              <p class="doctor-focus">Várices, arañitas vasculares, insuficiencia venosa, trombosis, circulación, enfermedad arterial periférica y arterias carótidas.</p>
             </div>
           </article>
           <article class="doctor-card">
             <img src="/images/bernal.jpeg" alt="Dra. Olga Bernal" loading="lazy" />
             <div>
               <h3>Dra. Olga Bernal</h3>
-              <p class="doctor-specialty">Ginecologia y obstetricia</p>
-              <p>Atencion integral de la salud de la mujer, con controles ginecologicos, prevencion y tratamiento de enfermedades ginecologicas.</p>
+              <p class="doctor-specialty">Ginecología y obstetricia</p>
+              <p>Atención integral de la salud de la mujer, con controles ginecológicos, prevención y tratamiento de enfermedades ginecológicas.</p>
               <p class="doctor-focus">Salud sexual y reproductiva, control y seguimiento del embarazo.</p>
             </div>
           </article>
@@ -284,21 +362,21 @@
       <section id="ubicacion" class="section-band visit-section">
         <div class="visit-card glass-panel">
           <div>
-            <h2>Agenda tu visita a Madelcap.</h2>
-            <p>Estamos en Teniente Rivas 136, Centro, Nemby, a media cuadra del lado de urgencias del Hospital Nemby.</p>
+            <h2>Agendá tu visita a Madelcap.</h2>
+            <p>Estamos en Teniente Rivas 136, Centro, Ñemby, a media cuadra del lado de urgencias del Hospital Ñemby.</p>
           </div>
-          <figure class="visit-photo" aria-label="Fachada de Clinica Madelcap">
-            <img src="/images/madelcapFachada.jpg" alt="Fachada de Clinica Madelcap en Nemby" loading="lazy" />
+          <figure class="visit-photo" aria-label="Fachada de Clínica Madelcap">
+            <img src="/images/madelcapFachada.webp" alt="Fachada de Clínica Madelcap en Ñemby" width="1600" height="1200" loading="lazy" decoding="async" />
           </figure>
           <div class="visit-actions">
-            <a class="button primary" href="https://wa.me/595971754545?text=Hola%20Clinica%20Madelcap%2C%20quiero%20agendar%20un%20turno" target="_blank" rel="noopener">Escribir por WhatsApp</a>
+            <a class="button primary" href="https://wa.me/595971754545?text=Hola%20Cl%C3%ADnica%20Madelcap%2C%20quiero%20agendar%20un%20turno" target="_blank" rel="noopener">Escribir por WhatsApp</a>
             <a class="button secondary" href="https://www.google.com/maps/place/MADELCAP/@-25.397147,-57.5486222,17z/data=!3m1!4b1!4m6!3m5!1s0x945dac7beaa751bd:0x6e8bed49ecfcd2ac!8m2!3d-25.397147!4d-57.5460419!16s%2Fg%2F11byt8hfl0?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener">Abrir Google Maps</a>
           </div>
         </div>
       </section>
     </main>
 
-    <a class="floating-whatsapp" href="https://wa.me/595971754545?text=Hola%20Clinica%20Madelcap%2C%20quiero%20agendar%20un%20turno" target="_blank" rel="noopener" aria-label="Agendar por WhatsApp">
+    <a class="floating-whatsapp" href="https://wa.me/595971754545?text=Hola%20Cl%C3%ADnica%20Madelcap%2C%20quiero%20agendar%20un%20turno" target="_blank" rel="noopener" aria-label="Agendar por WhatsApp">
       <svg class="whatsapp-mark" viewBox="0 0 512 512" aria-hidden="true" focusable="false">
         <path fill="#b3b3b3" d="m143.8 431.2l7.7 4.5c32.2 19.1 69.2 29.2 106.8 29.2h.1c115.7 0 209.8-94.1 209.9-209.8c0-56.1-21.8-108.8-61.4-148.4c-39.3-39.5-92.7-61.7-148.4-61.5c-115.8 0-209.9 94.1-210 209.8c-.1 39.5 11.1 78.2 32.1 111.7l5 7.9L64.4 452zM3.7 512l35.8-130.8C17.5 342.9 5.8 299.5 5.9 255C5.9 115.8 119.2 2.6 258.4 2.6c67.5 0 130.9 26.3 178.6 74s73.9 111.1 73.9 178.6c-.1 139.2-113.3 252.4-252.5 252.4h-.1c-42.3 0-83.8-10.6-120.7-30.7z" />
         <path fill="#fff" d="M1.1 509.4L37 378.6C14.8 340.2 3.2 296.7 3.3 252.4C3.3 113.2 116.6 0 255.8 0c67.5 0 130.9 26.3 178.6 74s73.9 111.1 73.9 178.6C508.2 391.8 394.9 505 255.8 505h-.1c-42.3 0-83.8-10.6-120.7-30.7z" />
@@ -313,11 +391,11 @@
 
     <footer class="site-footer">
       <div class="footer-brand">
-        <img src="/images/madelcapLogo.png" alt="Clinica Madelcap" />
+        <img src="/images/madelcapLogo.png" alt="Clínica Madelcap" width="750" height="500" loading="lazy" />
         <p>Tu salud, nuestra prioridad.</p>
       </div>
       <div class="footer-links">
-        <a href="https://www.google.com/maps/place/MADELCAP/@-25.397147,-57.5486222,17z/data=!3m1!4b1!4m6!3m5!1s0x945dac7beaa751bd:0x6e8bed49ecfcd2ac!8m2!3d-25.397147!4d-57.5460419!16s%2Fg%2F11byt8hfl0?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener" aria-label="Abrir ubicacion en Google Maps" title="Teniente Rivas 136, Centro, Nemby">
+        <a href="https://www.google.com/maps/place/MADELCAP/@-25.397147,-57.5486222,17z/data=!3m1!4b1!4m6!3m5!1s0x945dac7beaa751bd:0x6e8bed49ecfcd2ac!8m2!3d-25.397147!4d-57.5460419!16s%2Fg%2F11byt8hfl0?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener" aria-label="Abrir ubicación en Google Maps" title="Teniente Rivas 136, Centro, Ñemby">
           <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
             <path d="M12 2.5a7 7 0 0 0-7 7c0 5.25 7 12 7 12s7-6.75 7-12a7 7 0 0 0-7-7Zm0 9.8a2.8 2.8 0 1 1 0-5.6 2.8 2.8 0 0 1 0 5.6Z" />
           </svg>
