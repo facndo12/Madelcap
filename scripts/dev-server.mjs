@@ -11,8 +11,10 @@ const types = {
   ".html": "text/html; charset=utf-8",
   ".js": "text/javascript; charset=utf-8",
   ".jpg": "image/jpeg",
+  ".jpeg": "image/jpeg",
   ".png": "image/png",
   ".txt": "text/plain; charset=utf-8",
+  ".webp": "image/webp",
   ".xml": "application/xml; charset=utf-8"
 };
 
