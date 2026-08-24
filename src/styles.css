@@ -652,7 +652,7 @@ h1 {
    vidrio su trabajo de jerarquia, que es flotar sobre la fotografia. */
 .service-card {
   position: relative;
-  min-height: 322px;
+  min-height: 448px;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -724,12 +724,8 @@ h1 {
   padding: 0 18px 14px;
   margin-bottom: 0;
   color: var(--muted);
-  font-size: 0.92rem;
-  line-height: 1.5;
-  display: -webkit-box;
-  overflow: hidden;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 4;
+  font-size: 0.9rem;
+  line-height: 1.44;
 }
 
 .service-card .card-action {
