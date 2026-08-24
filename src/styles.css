@@ -672,16 +672,6 @@ h1 {
 
 /* Tinte comun sobre la foto: las 12 imagenes vienen de fuentes distintas
    y sin esto la grilla lee como un collage. */
-.service-card::before {
-  content: "";
-  position: absolute;
-  inset: 0 0 auto 0;
-  z-index: 1;
-  aspect-ratio: 16 / 9;
-  pointer-events: none;
-  background: linear-gradient(180deg, rgba(254, 88, 0, 0.12), rgba(44, 45, 48, 0.18));
-}
-
 .service-card:hover,
 .service-card:focus-visible {
   box-shadow: 0 30px 84px rgba(44, 45, 48, 0.2);
